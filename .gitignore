@@ -1,3 +1,4 @@
 .DS_Store
 target
-P95_22152365.code-workspace
+*.code-workspace
+.vscode

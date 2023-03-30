@@ -1,0 +1,497 @@
+{
+  "bell": {
+    "de": "glocke",
+    "es": "campana",
+    "fr": "cloche"
+  },
+  "nest": {
+    "de": "nest",
+    "es": "nido",
+    "fr": "nid"
+  },
+  "paper": {
+    "de": "papier",
+    "es": "papel",
+    "fr": "papier"
+  },
+  "star": {
+    "de": "stern",
+    "es": "estrella",
+    "fr": "étoile"
+  },
+  "song": {
+    "de": "lied",
+    "es": "canción",
+    "fr": "chanson"
+  },
+  "time": {
+    "de": "zeit",
+    "es": "tiempo",
+    "fr": "temps"
+  },
+  "apple": {
+    "de": "apfel",
+    "es": "manzana",
+    "fr": "pomme"
+  },
+  "bear": {
+    "de": "tragen",
+    "es": "oso",
+    "fr": "ours"
+  },
+  "cake": {
+    "de": "kuchen",
+    "es": "pastel",
+    "fr": "gâteau"
+  },
+  "box": {
+    "de": "kasten",
+    "es": "caja",
+    "fr": "boîte"
+  },
+  "water": {
+    "de": "wasser",
+    "es": "agua",
+    "fr": "eau"
+  },
+  "chocolate": {
+    "de": "schokolade",
+    "es": "chocolate",
+    "fr": "chocolat"
+  },
+  "back": {
+    "de": "zurück",
+    "es": "hornear",
+    "fr": "cuire"
+  },
+  "tree": {
+    "de": "baum",
+    "es": "árbol",
+    "fr": "arbre"
+  },
+  "birth": {
+    "de": "geburt",
+    "es": "nacimiento",
+    "fr": "naissance"
+  },
+  "kitty": {
+    "de": "kätzchen",
+    "es": "gatito",
+    "fr": "minou"
+  },
+  "bread": {
+    "de": "brot",
+    "es": "pan",
+    "fr": "pain"
+  },
+  "man": {
+    "de": "mann",
+    "es": "hombre",
+    "fr": "homme"
+  },
+  "brother": {
+    "de": "bruder",
+    "es": "hermano",
+    "fr": "frère"
+  },
+  "night": {
+    "de": "nacht",
+    "es": "noche",
+    "fr": "nuit"
+  },
+  "christmas": {
+    "de": "weihnachten",
+    "es": "navidad",
+    "fr": "noël"
+  },
+  "seed": {
+    "de": "samen",
+    "es": "semilla",
+    "fr": "graines"
+  },
+  "day": {
+    "de": "tage",
+    "es": "día",
+    "fr": "jour"
+  },
+  "dog": {
+    "de": "hund",
+    "es": "perro",
+    "fr": "chien"
+  },
+  "boat": {
+    "de": "boote",
+    "es": "bote",
+    "fr": "bateau"
+  },
+  "father": {
+    "de": "vater",
+    "es": "padre",
+    "fr": "père"
+  },
+  "snow": {
+    "de": "schnee",
+    "es": "nieve",
+    "fr": "neige"
+  },
+  "garden": {
+    "de": "garten",
+    "es": "jardín",
+    "fr": "jardin"
+  },
+  "sun": {
+    "de": "sonne",
+    "es": "sol",
+    "fr": "soleil"
+  },
+  "door": {
+    "de": "tür",
+    "es": "puerta",
+    "fr": "porte"
+  },
+  "toy": {
+    "de": "spielzeuge",
+    "es": "juguete",
+    "fr": "jouet"
+  },
+  "hand": {
+    "de": "hände",
+    "es": "mano",
+    "fr": "main"
+  },
+  "car": {
+    "de": "auto",
+    "es": "carros",
+    "fr": "voitures"
+  },
+  "letter": {
+    "de": "brief",
+    "es": "carta",
+    "fr": "lettre"
+  },
+  "egg": {
+    "de": "ei",
+    "es": "huevo",
+    "fr": "œuf"
+  },
+  "bed": {
+    "de": "betten",
+    "es": "cama",
+    "fr": "lit"
+  },
+  "head": {
+    "de": "kopf",
+    "es": "cabeza",
+    "fr": "diriger"
+  },
+  "chicken": {
+    "de": "huhn",
+    "es": "pollo",
+    "fr": "poulet"
+  },
+  "book": {
+    "de": "buch",
+    "es": "libro",
+    "fr": "livre"
+  },
+  "story": {
+    "de": "geschichte",
+    "es": "historia",
+    "fr": "histoire"
+  },
+  "boy": {
+    "de": "junge",
+    "es": "chico",
+    "fr": "garçon"
+  },
+  "way": {
+    "de": "weg",
+    "es": "forma",
+    "fr": "chemin"
+  },
+  "doll": {
+    "de": "puppe",
+    "es": "muñeca",
+    "fr": "poupée"
+  },
+  "farm": {
+    "de": "bauernhof",
+    "es": "granja",
+    "fr": "cultiver"
+  },
+  "rabbit": {
+    "de": "kaninchen",
+    "es": "conejo",
+    "fr": "lapin"
+  },
+  "friend": {
+    "de": "freunde",
+    "es": "amigos",
+    "fr": "amis"
+  },
+  "stick": {
+    "de": "stock",
+    "es": "palo",
+    "fr": "bâton"
+  },
+  "ground": {
+    "de": "boden",
+    "es": "suelo",
+    "fr": "sol"
+  },
+  "window": {
+    "de": "fenster",
+    "es": "ventana",
+    "fr": "fenêtre"
+  },
+  "name": {
+    "de": "name",
+    "es": "apellido",
+    "fr": "nom"
+  },
+  "house": {
+    "de": "haus",
+    "es": "casa",
+    "fr": "loger"
+  },
+  "baby": {
+    "de": "baby",
+    "es": "niño",
+    "fr": "nourrisson"
+  },
+  "ring": {
+    "de": "ring",
+    "es": "anillo",
+    "fr": "anneau"
+  },
+  "thing": {
+    "de": "ding",
+    "es": "cosas",
+    "fr": "choses"
+  },
+  "street": {
+    "de": "straße",
+    "es": "calle",
+    "fr": "rue"
+  },
+  "top": {
+    "de": "spitze",
+    "es": "arriba",
+    "fr": "haut"
+  },
+  "child": {
+    "de": "kind",
+    "es": "niño",
+    "fr": "enfant"
+  },
+  "duck": {
+    "de": "ente",
+    "es": "pato",
+    "fr": "canard"
+  },
+  "fish": {
+    "de": "fisch",
+    "es": "pez",
+    "fr": "poisson"
+  },
+  "money": {
+    "de": "geld",
+    "es": "dinero",
+    "fr": "argent"
+  },
+  "bath": {
+    "de": "bad",
+    "es": "baño",
+    "fr": "bain"
+  },
+  "chair": {
+    "de": "stuhl",
+    "es": "silla",
+    "fr": "chaise"
+  },
+  "eye": {
+    "de": "auge",
+    "es": "ojo",
+    "fr": "œil"
+  },
+  "wood": {
+    "de": "holz",
+    "es": "madera",
+    "fr": "bois"
+  },
+  "morning": {
+    "de": "morgen",
+    "es": "mañana",
+    "fr": "matin"
+  },
+  "rain": {
+    "de": "regen",
+    "es": "lluvia",
+    "fr": "pluie"
+  },
+  "shoe": {
+    "de": "schuhe",
+    "es": "zapatos",
+    "fr": "chaussures"
+  },
+  "table": {
+    "de": "tisch",
+    "es": "mesa",
+    "fr": "tableau"
+  },
+  "picture": {
+    "de": "bild",
+    "es": "imagen",
+    "fr": "image"
+  },
+  "school": {
+    "de": "schule",
+    "es": "escuela",
+    "fr": "école"
+  },
+  "smile": {
+    "de": "lächeln",
+    "es": "sonrisa",
+    "fr": "sourire"
+  },
+  "coat": {
+    "de": "mantel",
+    "es": "abrigo",
+    "fr": "manteau"
+  },
+  "cow": {
+    "de": "kuh",
+    "es": "vaca",
+    "fr": "vache"
+  },
+  "goodbye": {
+    "de": "auf wiedersehen",
+    "es": "adiós",
+    "fr": "au revoir"
+  },
+  "grass": {
+    "de": "gras",
+    "es": "hierba",
+    "fr": "herbe"
+  },
+  "leg": {
+    "de": "bein",
+    "es": "pierna",
+    "fr": "jambe"
+  },
+  "robin": {
+    "de": "rotkehlchen",
+    "es": "petirrojo",
+    "fr": "rouge-gorge"
+  },
+  "girl": {
+    "de": "mädchen",
+    "es": "chicas",
+    "fr": "filles"
+  },
+  "hill": {
+    "de": "hügel",
+    "es": "colina",
+    "fr": "colline"
+  },
+  "milk": {
+    "de": "milch",
+    "es": "leche",
+    "fr": "lait"
+  },
+  "sheep": {
+    "de": "schaf",
+    "es": "oveja",
+    "fr": "mouton"
+  },
+  "sister": {
+    "de": "schwester",
+    "es": "hermana",
+    "fr": "sœur"
+  },
+  "watch": {
+    "de": "schauen",
+    "es": "mirar",
+    "fr": "montre"
+  },
+  "ball": {
+    "de": "ball",
+    "es": "pelota",
+    "fr": "balle"
+  },
+  "squirrel": {
+    "de": "eichhörnchen",
+    "es": "ardilla",
+    "fr": "écureuil"
+  },
+  "wind": {
+    "de": "wind",
+    "es": "viento",
+    "fr": "vent"
+  },
+  "fire": {
+    "de": "feuer",
+    "es": "fuego",
+    "fr": "feu"
+  },
+  "floor": {
+    "de": "boden",
+    "es": "piso",
+    "fr": "sol"
+  },
+  "horse": {
+    "de": "pferd",
+    "es": "caballo",
+    "fr": "cheval"
+  },
+  "home": {
+    "de": "heim",
+    "es": "casa",
+    "fr": "maison"
+  },
+  "mother": {
+    "de": "mutter",
+    "es": "mamá",
+    "fr": "maman"
+  },
+  "party": {
+    "de": "feier",
+    "es": "fiesta",
+    "fr": "fête"
+  },
+  "flower": {
+    "de": "blumen",
+    "es": "flor",
+    "fr": "fleur"
+  },
+  "game": {
+    "de": "spiel",
+    "es": "juego",
+    "fr": "jeu"
+  },
+  "pig": {
+    "de": "schwein",
+    "es": "cerdo",
+    "fr": "cochon"
+  },
+  "bird": {
+    "de": "vogel",
+    "es": "pájaro",
+    "fr": "oiseau"
+  },
+  "cat": {
+    "de": "katze",
+    "es": "gato",
+    "fr": "chat"
+  },
+  "corn": {
+    "de": "mais",
+    "es": "maíz",
+    "fr": "maïs"
+  },
+  "foot": {
+    "de": "fuß",
+    "es": "pie",
+    "fr": "pied"
+  }
+}

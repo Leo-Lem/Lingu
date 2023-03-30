@@ -1,4 +1,4 @@
-package leolem.lingu;
+package lingu;
 
 public class Lingu {
 
