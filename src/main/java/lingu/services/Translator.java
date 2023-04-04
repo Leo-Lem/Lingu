@@ -10,6 +10,6 @@ public interface Translator {
 
   public Language getTarget();
 
-  public abstract Optional<String> translate(String word);
+  public Optional<String> translate(String word);
 
 }

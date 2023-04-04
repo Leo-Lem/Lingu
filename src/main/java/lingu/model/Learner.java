@@ -14,6 +14,10 @@ public class Learner {
   private LocalDate streakStart;
   private Language interfaceLanguage;
 
+  public Learner(String name) {
+    this(name, Language.SPANISH, new Vocabulary(), LocalDate.now(), Language.ENGLISH);
+  }
+
   @JsonCreator
   public Learner(
       @JsonProperty("name") String name,
@@ -26,10 +30,6 @@ public class Learner {
     this.vocabulary = vocabulary;
     this.streakStart = streakStart;
     this.interfaceLanguage = interfaceLanguage;
-  }
-
-  public Learner(String name) {
-    this(name, Language.SPANISH, new Vocabulary(), LocalDate.now(), Language.ENGLISH);
   }
 
   @JsonProperty("name")
@@ -61,20 +61,24 @@ public class Learner {
     return this.interfaceLanguage;
   }
 
-  public void setName(String newName) {
+  public Learner setName(String newName) {
     this.name = newName;
+    return this;
   }
 
-  public void setLanguage(Language newLanguage) {
+  public Learner setLanguage(Language newLanguage) {
     this.language = newLanguage;
+    return this;
   }
 
-  public void setInterfaceLanguage(Language newLanguage) {
+  public Learner setInterfaceLanguage(Language newLanguage) {
     this.interfaceLanguage = newLanguage;
+    return this;
   }
 
-  public void setStreakStart(LocalDate newStreakStart) {
+  public Learner setStreakStart(LocalDate newStreakStart) {
     this.streakStart = newStreakStart;
+    return this;
   }
 
   @Override

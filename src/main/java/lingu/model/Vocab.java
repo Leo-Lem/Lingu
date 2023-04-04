@@ -11,6 +11,10 @@ public class Vocab {
   private Language target;
   private Integer stage;
 
+  public Vocab(String word, Language target) {
+    this(word, target, 0);
+  }
+
   @JsonCreator
   public Vocab(
       @JsonProperty("word") String word,
@@ -19,10 +23,6 @@ public class Vocab {
     this.word = word;
     this.target = target;
     this.stage = stage;
-  }
-
-  public Vocab(String word, Language target) {
-    this(word, target, 0);
   }
 
   @JsonProperty("word")
@@ -40,14 +40,16 @@ public class Vocab {
     return this.stage;
   }
 
-  public void advanceStage() {
+  public Vocab advanceStage() {
     if (this.stage < 5)
       stage++;
+    return this;
   }
 
-  public void decreaseStage() {
+  public Vocab decreaseStage() {
     if (this.stage > 0)
       stage--;
+    return this;
   }
 
   @Override

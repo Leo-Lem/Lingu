@@ -26,12 +26,14 @@ public class Vocabulary {
     return vocabulary.get(index);
   }
 
-  public void addVocab(Vocab vocab) {
+  public Vocabulary addVocab(Vocab vocab) {
     this.vocabulary.add(vocab);
+    return this;
   }
 
-  public void deleteVocab(Vocab vocab) {
+  public Vocabulary deleteVocab(Vocab vocab) {
     this.vocabulary.remove(vocab);
+    return this;
   }
 
   @Override
