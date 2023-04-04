@@ -1,8 +1,7 @@
-package lingu;
+package lingu.model;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import lingu.model.*;
 
 public class VocabTests {
 

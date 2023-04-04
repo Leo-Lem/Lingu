@@ -1,4 +1,4 @@
-package lingu;
+package lingu.services;
 
 import static org.junit.Assert.*;
 
@@ -7,8 +7,7 @@ import java.util.Optional;
 import org.junit.Test;
 
 import lingu.model.Language;
-import lingu.services.JSONFileTranslator;
-import lingu.services.Translator;
+import lingu.services.interfaces.Translator;
 
 public class JSONFileTranslatorTests {
 

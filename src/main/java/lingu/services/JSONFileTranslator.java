@@ -1,10 +1,11 @@
 package lingu.services;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
-import lingu.lib.JSONFileHandler;
 import lingu.model.Language;
+import lingu.services.interfaces.Translator;
 
 public class JSONFileTranslator implements Translator {
 
@@ -23,6 +24,10 @@ public class JSONFileTranslator implements Translator {
 
   @SuppressWarnings("unchecked")
   public JSONFileTranslator(Language source, Language target, String filename, JSONFileHandler jsonHandler) {
+    if (!Arrays.asList(getAvailableLanguages()).contains(source)
+        || !Arrays.asList(getAvailableLanguages()).contains(target))
+      throw new IllegalArgumentException("Language is not available.");
+
     this.source = source;
     this.target = target;
 
@@ -31,6 +36,11 @@ public class JSONFileTranslator implements Translator {
     } catch (ClassCastException e) {
       throw new IllegalStateException("The translations file is corrupted and needs to be replaced...");
     }
+  }
+
+  @Override
+  public Language[] getAvailableLanguages() {
+    return new Language[] { Language.ENGLISH, Language.GERMAN, Language.SPANISH, Language.FRENCH };
   }
 
   @Override
@@ -44,13 +54,19 @@ public class JSONFileTranslator implements Translator {
   }
 
   @Override
+  public JSONFileTranslator setSource(Language language) {
+    this.source = language;
+    return this;
+  }
+
+  @Override
+  public JSONFileTranslator setTarget(Language language) {
+    this.target = language;
+    return this;
+  }
+
+  @Override
   public Optional<String> translate(String word) {
-    if (source != Language.ENGLISH)
-      System.err.println("offline translator can only translate from english.");
-
-    if (target != Language.GERMAN && target != Language.SPANISH && target != Language.FRENCH)
-      System.err.println("offline translator can only translate to german, english and spanish.");
-
     Map<String, String> translation = translations.get(word);
     if (translation != null) {
       String translatedWord = translation.get(target.getCode());

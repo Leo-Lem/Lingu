@@ -1,10 +1,9 @@
 package lingu.services;
 
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
-import lingu.lib.JSONFileHandler;
 import lingu.model.Language;
+import lingu.services.interfaces.Localizer;
 
 public class JSONFileLocalizer implements Localizer {
 
@@ -17,6 +16,9 @@ public class JSONFileLocalizer implements Localizer {
 
   @SuppressWarnings("unchecked")
   public JSONFileLocalizer(Language language, String filename, JSONFileHandler jsonHandler) {
+    if (!Arrays.asList(getAvailableLanguages()).contains(language))
+      throw new IllegalArgumentException("Language is not available: " + language);
+
     this.language = language;
 
     try {
@@ -25,6 +27,11 @@ public class JSONFileLocalizer implements Localizer {
       throw new IllegalStateException(
           "The localizations file for " + getLanguage().getCode() + " is corrupted...");
     }
+  }
+
+  @Override
+  public Language[] getAvailableLanguages() {
+    return new Language[] { Language.ENGLISH, Language.GERMAN, Language.SPANISH, Language.FRENCH };
   }
 
   @Override
@@ -38,9 +45,20 @@ public class JSONFileLocalizer implements Localizer {
   }
 
   @Override
-  public Optional<String> localize(String key) {
+  public String localize(String key) {
     return Optional.ofNullable(localizations.get(key))
-        .flatMap(localization -> Optional.ofNullable(localization.get(language.getCode())));
+        .flatMap(localization -> Optional.ofNullable(localization.get(language.getCode())))
+        .orElse(key);
+  }
+
+  @Override
+  public String localizeWithStringArgument(String key, String argument) {
+    return String.format(localize(key + " %s"), argument);
+  }
+
+  @Override
+  public String localizeLanguage(Language language) {
+    return localize(language.getCode());
   }
 
 }

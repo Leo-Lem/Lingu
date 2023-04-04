@@ -1,10 +1,9 @@
-package lingu;
+package lingu.services;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import lingu.lib.JSONFileHandler;
 import lingu.model.Learner;
 
 public class JSONFileHandlerTests {

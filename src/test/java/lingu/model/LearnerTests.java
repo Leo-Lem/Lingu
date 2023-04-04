@@ -1,12 +1,10 @@
-package lingu;
+package lingu.model;
 
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 
 import org.junit.Test;
-
-import lingu.model.Learner;
 
 public class LearnerTests {
 
