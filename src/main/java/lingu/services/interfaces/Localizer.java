@@ -14,6 +14,4 @@ public interface Localizer {
 
   public String localizeWithStringArgument(String key, String argument);
 
-  public String localizeLanguage(Language language);
-
 }

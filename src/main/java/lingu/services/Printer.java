@@ -5,56 +5,71 @@ import java.io.PrintStream;
 import lingu.services.interfaces.Localizer;
 
 public class Printer {
-  private final PrintStream OUT;
-  private final Localizer LOCALIZER;
+  private final PrintStream out;
+  private final Localizer localizer;
 
   public Printer(Localizer localizer) {
     this(System.out, localizer);
   }
 
   public Printer(PrintStream out, Localizer localizer) {
-    this.OUT = out;
-    this.LOCALIZER = localizer;
-  }
-
-  public void printHeader(String page) {
-    printEmptyLine();
-    printAsHeader("");
-    printAsHeader("Lingu");
-    printAsHeader(LOCALIZER.localize("SUBTITLE"));
-    printAsHeader(LOCALIZER.localize(page));
-    printAsHeader("");
-    printEmptyLine();
+    this.out = out;
+    this.localizer = localizer;
   }
 
   public void printEmptyLine() {
-    OUT.println();
+    out.println();
   }
 
-  public void printAsHeader(String header) {
-    OUT.println("*** " + header);
+  public void printlnAsLingu(String message) {
+    printAsLingu(appendln(localizer.localize(message)));
   }
 
   public void printAsLingu(String message) {
-    OUT.println("«Lingu» " + message);
+    printAsPerson("Lingu", localizer.localize(message));
   }
 
-  public void printAsPromptWithName(String name) {
-    OUT.print("« " + name + "» ");
+  public void printInputPrompt(String name) {
+    printAsPerson(name, "");
   }
 
-  public void printAsPrompt(String prompt, boolean withLinebreak) {
-    if (withLinebreak)
-      OUT.println("> " + prompt);
-    else
-      OUT.print("> " + prompt);
+  public void printOption(Integer identifier, String option) {
+    printOption(String.valueOf(identifier), option);
   }
 
-  public void printOption(Integer index, String option) {
-    OUT.println("    (" + index + ") " + option);
+  public void printOption(String identifier, String option) {
+    printlnSlowly("  (" + identifier + ") " + localizer.localize(option));
   }
 
   public void printInvalidInput(String tip) {
-    OUT.print("(" + LOCALIZER.localize("INVALID_INPUT") + ") " + LOCALIZER.localize(tip) + ": ");
+    printSlowly("\033[1A[\033[K" + localizer.localize("INVALID_INPUT") + ": " + localizer.localize(tip) + "] ");
   }
+
+  private void printAsPerson(String name, String message) {
+    printSlowly("«" + name + "» ");
+    printSlowly(message, 20);
+  }
+
+  private void printlnSlowly(String message) {
+    printSlowly(appendln(message));
+  }
+
+  private void printSlowly(String message) {
+    printSlowly(message, 2);
+  }
+
+  private void printSlowly(String message, Integer delay) {
+    try {
+      for (int i = 0; i < message.length(); i++) {
+        out.print(message.charAt(i));
+        Thread.sleep(delay);
+      }
+    } catch (InterruptedException e) {
+    }
+  }
+
+  private String appendln(String str) {
+    return str + "\n";
+  }
+
 }

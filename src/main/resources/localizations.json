@@ -17,7 +17,7 @@
     "ES": "Estupendo! Hablaremos %s…",
     "FR": ""
   },
-  "PICK_LANGUAGE %s": {
+  "PICK_LANGUAGE": {
     "EN": "What language can I teach you?",
     "DE": "Welche Sprache soll ich dir beibringen?",
     "ES": "Qué idioma puedo enseñarte?",
@@ -29,52 +29,10 @@
     "ES": "%s, ¡una buena elección!",
     "FR": ""
   },
-  "INVALID_INPUT_TIP_YES_OR_NO": {
-    "EN": "Please type yes or no",
-    "DE": "Bitte gib y (für ja) oder n (für nein) ein",
-    "ES": "Por favor, introduzca y (para sí) o n (para no)",
-    "FR": ""
-  },
-  "INVALID_INPUT_TIP_SELECTION": {
-    "EN": "Please pick a number from above",
-    "DE": "Bitte gib eine Ziffer aus der Liste ein",
-    "ES": "Por favor, elija un número de arriba",
-    "FR": ""
-  },
-  "EN": {
-    "EN": "English",
-    "DE": "Englisch",
-    "ES": "Inglés",
-    "FR": ""
-  },
-  "DE": {
-    "EN": "German",
-    "DE": "Deutsch",
-    "ES": "Alemán",
-    "FR": ""
-  },
-  "ES": {
-    "EN": "Spanish",
-    "DE": "Spanisch",
-    "ES": "Español",
-    "FR": ""
-  },
-  "FR": {
-    "EN": "French",
-    "DE": "Französisch",
-    "ES": "Francés",
-    "FR": ""
-  },
   "WELCOME_BACK %s": {
     "EN": "Welcome back, %s!",
     "DE": "Willkommen zurück, %s!",
     "ES": "¡Bienvenido de nuevo, %s!",
-    "FR": ""
-  },
-  "INVALID_INPUT": {
-    "EN": "Invalid input",
-    "DE": "Ungültige Eingabe",
-    "ES": "Entrada no válida",
     "FR": ""
   },
   "PICK_ACTIVITY": {
@@ -107,6 +65,36 @@
     "ES": "cambiarte el nombre?",
     "FR": ""
   },
+  "QUIT": {
+    "EN": "leave?",
+    "DE": "aufhören?",
+    "ES": "salir?",
+    "FR": ""
+  },
+  "CHOOSE_NAME": {
+    "EN": "What should i call you?",
+    "DE": "Wie soll ich dich nennen?",
+    "ES": "¿Como te llamas?",
+    "FR": ""
+  },
+  "NEW_NAME %s": {
+    "EN": "Sure thing, but you will always be the same %s to me!",
+    "DE": "Na klar, aber du bleibst immer der alte %s für mich!",
+    "ES": "¡Claro, pero para mí siempre serás el mismo %s!",
+    "FR": ""
+  },
+  "INVALID_INPUT_TIP_YES_OR_NO": {
+    "EN": "Please type yes or no…",
+    "DE": "Bitte gib y (für ja) oder n (für nein) ein…",
+    "ES": "Por favor, introduzca y (para sí) o n (para no)…",
+    "FR": ""
+  },
+  "INVALID_INPUT_TIP_SELECTION": {
+    "EN": "Please pick a value from above…",
+    "DE": "Bitte gib einen Wert aus der Liste ein…",
+    "ES": "Por favor, elija un valor de arriba…",
+    "FR": ""
+  },
   "MENU": {
     "EN": "Menu",
     "DE": "Menü",
@@ -131,10 +119,34 @@
     "ES": "Bien, entonces, volviendo al menú…",
     "FR": ""
   },
-  "": {
-    "EN": "",
-    "DE": "",
-    "ES": "",
+  "INVALID_INPUT": {
+    "EN": "Invalid input",
+    "DE": "Ungültige Eingabe",
+    "ES": "Entrada no válida",
+    "FR": ""
+  },
+  "ENGLISH": {
+    "EN": "English",
+    "DE": "Englisch",
+    "ES": "Inglés",
+    "FR": ""
+  },
+  "GERMAN": {
+    "EN": "German",
+    "DE": "Deutsch",
+    "ES": "Alemán",
+    "FR": ""
+  },
+  "SPANISH": {
+    "EN": "Spanish",
+    "DE": "Spanisch",
+    "ES": "Español",
+    "FR": ""
+  },
+  "FRENCH": {
+    "EN": "French",
+    "DE": "Französisch",
+    "ES": "Francés",
     "FR": ""
   },
   "": {

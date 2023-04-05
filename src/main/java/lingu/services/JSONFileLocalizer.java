@@ -53,12 +53,6 @@ public class JSONFileLocalizer implements Localizer {
 
   @Override
   public String localizeWithStringArgument(String key, String argument) {
-    return String.format(localize(key + " %s"), argument);
+    return String.format(localize(key + " %s"), localize(argument));
   }
-
-  @Override
-  public String localizeLanguage(Language language) {
-    return localize(language.getCode());
-  }
-
 }

@@ -15,14 +15,14 @@ import lingu.services.interfaces.FileHandler;
 
 public class JSONFileHandler implements FileHandler {
 
-  private final ObjectMapper MAPPER;
+  private final ObjectMapper mapper;
 
   public JSONFileHandler() {
     this(new ObjectMapper().registerModule(new JavaTimeModule()));
   }
 
   public JSONFileHandler(ObjectMapper mapper) {
-    this.MAPPER = mapper;
+    this.mapper = mapper;
   }
 
   @Override
@@ -38,7 +38,7 @@ public class JSONFileHandler implements FileHandler {
   @Override
   public <T> Optional<T> load(File file, Class<T> type) {
     try (Reader reader = new FileReader(file)) {
-      return Optional.of(MAPPER.readValue(reader, type));
+      return Optional.of(mapper.readValue(reader, type));
     } catch (IOException e) {
       // System.err.println("Error loading file at " + file.getAbsolutePath() + ": " +
       // e.getMessage());
@@ -49,7 +49,7 @@ public class JSONFileHandler implements FileHandler {
   @Override
   public <T> void save(T object, File file) {
     try (Writer writer = new FileWriter(file)) {
-      MAPPER.writeValue(writer, object);
+      mapper.writeValue(writer, object);
     } catch (IOException e) {
       // System.err.println("Error saving file to : " + file.getAbsolutePath() + ": "
       // + e.getMessage());
