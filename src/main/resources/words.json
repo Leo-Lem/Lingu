@@ -1,497 +1,101 @@
-{
-  "bell": {
-    "DE": "glocke",
-    "ES": "campana",
-    "FR": "cloche"
-  },
-  "nest": {
-    "DE": "nest",
-    "ES": "nido",
-    "FR": "nid"
-  },
-  "paper": {
-    "DE": "papier",
-    "ES": "papel",
-    "FR": "papier"
-  },
-  "star": {
-    "DE": "stern",
-    "ES": "estrella",
-    "FR": "étoile"
-  },
-  "song": {
-    "DE": "lied",
-    "ES": "canción",
-    "FR": "chanson"
-  },
-  "time": {
-    "DE": "zeit",
-    "ES": "tiempo",
-    "FR": "temps"
-  },
-  "apple": {
-    "DE": "apfel",
-    "ES": "manzana",
-    "FR": "pomme"
-  },
-  "bear": {
-    "DE": "tragen",
-    "ES": "oso",
-    "FR": "ours"
-  },
-  "cake": {
-    "DE": "kuchen",
-    "ES": "pastel",
-    "FR": "gâteau"
-  },
-  "box": {
-    "DE": "kasten",
-    "ES": "caja",
-    "FR": "boîte"
-  },
-  "water": {
-    "DE": "wasser",
-    "ES": "agua",
-    "FR": "eau"
-  },
-  "chocolate": {
-    "DE": "schokolade",
-    "ES": "chocolate",
-    "FR": "chocolat"
-  },
-  "back": {
-    "DE": "zurück",
-    "ES": "hornear",
-    "FR": "cuire"
-  },
-  "tree": {
-    "DE": "baum",
-    "ES": "árbol",
-    "FR": "arbre"
-  },
-  "birth": {
-    "DE": "geburt",
-    "ES": "nacimiento",
-    "FR": "naissance"
-  },
-  "kitty": {
-    "DE": "kätzchen",
-    "ES": "gatito",
-    "FR": "minou"
-  },
-  "bread": {
-    "DE": "brot",
-    "ES": "pan",
-    "FR": "pain"
-  },
-  "man": {
-    "DE": "mann",
-    "ES": "hombre",
-    "FR": "homme"
-  },
-  "brother": {
-    "DE": "bruder",
-    "ES": "hermano",
-    "FR": "frère"
-  },
-  "night": {
-    "DE": "nacht",
-    "ES": "noche",
-    "FR": "nuit"
-  },
-  "christmas": {
-    "DE": "weihnachten",
-    "ES": "navidad",
-    "FR": "noël"
-  },
-  "seed": {
-    "DE": "samen",
-    "ES": "semilla",
-    "FR": "graines"
-  },
-  "day": {
-    "DE": "tage",
-    "ES": "día",
-    "FR": "jour"
-  },
-  "dog": {
-    "DE": "hund",
-    "ES": "perro",
-    "FR": "chien"
-  },
-  "boat": {
-    "DE": "boote",
-    "ES": "bote",
-    "FR": "bateau"
-  },
-  "father": {
-    "DE": "vater",
-    "ES": "padre",
-    "FR": "père"
-  },
-  "snow": {
-    "DE": "schnee",
-    "ES": "nieve",
-    "FR": "neige"
-  },
-  "garden": {
-    "DE": "garten",
-    "ES": "jardín",
-    "FR": "jardin"
-  },
-  "sun": {
-    "DE": "sonne",
-    "ES": "sol",
-    "FR": "soleil"
-  },
-  "door": {
-    "DE": "tür",
-    "ES": "puerta",
-    "FR": "porte"
-  },
-  "toy": {
-    "DE": "spielzeuge",
-    "ES": "juguete",
-    "FR": "jouet"
-  },
-  "hand": {
-    "DE": "hände",
-    "ES": "mano",
-    "FR": "main"
-  },
-  "car": {
-    "DE": "auto",
-    "ES": "carros",
-    "FR": "voitures"
-  },
-  "letter": {
-    "DE": "brief",
-    "ES": "carta",
-    "FR": "lettre"
-  },
-  "egg": {
-    "DE": "ei",
-    "ES": "huevo",
-    "FR": "œuf"
-  },
-  "bed": {
-    "DE": "betten",
-    "ES": "cama",
-    "FR": "lit"
-  },
-  "head": {
-    "DE": "kopf",
-    "ES": "cabeza",
-    "FR": "diriger"
-  },
-  "chicken": {
-    "DE": "huhn",
-    "ES": "pollo",
-    "FR": "poulet"
-  },
-  "book": {
-    "DE": "buch",
-    "ES": "libro",
-    "FR": "livre"
-  },
-  "story": {
-    "DE": "geschichte",
-    "ES": "historia",
-    "FR": "histoire"
-  },
-  "boy": {
-    "DE": "junge",
-    "ES": "chico",
-    "FR": "garçon"
-  },
-  "way": {
-    "DE": "weg",
-    "ES": "forma",
-    "FR": "chemin"
-  },
-  "doll": {
-    "DE": "puppe",
-    "ES": "muñeca",
-    "FR": "poupée"
-  },
-  "farm": {
-    "DE": "bauernhof",
-    "ES": "granja",
-    "FR": "cultiver"
-  },
-  "rabbit": {
-    "DE": "kaninchen",
-    "ES": "conejo",
-    "FR": "lapin"
-  },
-  "friend": {
-    "DE": "freunde",
-    "ES": "amigos",
-    "FR": "amis"
-  },
-  "stick": {
-    "DE": "stock",
-    "ES": "palo",
-    "FR": "bâton"
-  },
-  "ground": {
-    "DE": "boden",
-    "ES": "suelo",
-    "FR": "sol"
-  },
-  "window": {
-    "DE": "fenster",
-    "ES": "ventana",
-    "FR": "fenêtre"
-  },
-  "name": {
-    "DE": "name",
-    "ES": "apellido",
-    "FR": "nom"
-  },
-  "house": {
-    "DE": "haus",
-    "ES": "casa",
-    "FR": "loger"
-  },
-  "baby": {
-    "DE": "baby",
-    "ES": "niño",
-    "FR": "nourrisson"
-  },
-  "ring": {
-    "DE": "ring",
-    "ES": "anillo",
-    "FR": "anneau"
-  },
-  "thing": {
-    "DE": "ding",
-    "ES": "cosas",
-    "FR": "choses"
-  },
-  "street": {
-    "DE": "straße",
-    "ES": "calle",
-    "FR": "rue"
-  },
-  "top": {
-    "DE": "spitze",
-    "ES": "arriba",
-    "FR": "haut"
-  },
-  "child": {
-    "DE": "kind",
-    "ES": "niño",
-    "FR": "enfant"
-  },
-  "duck": {
-    "DE": "ente",
-    "ES": "pato",
-    "FR": "canard"
-  },
-  "fish": {
-    "DE": "fisch",
-    "ES": "pez",
-    "FR": "poisson"
-  },
-  "money": {
-    "DE": "geld",
-    "ES": "dinero",
-    "FR": "argent"
-  },
-  "bath": {
-    "DE": "bad",
-    "ES": "baño",
-    "FR": "bain"
-  },
-  "chair": {
-    "DE": "stuhl",
-    "ES": "silla",
-    "FR": "chaise"
-  },
-  "eye": {
-    "DE": "auge",
-    "ES": "ojo",
-    "FR": "œil"
-  },
-  "wood": {
-    "DE": "holz",
-    "ES": "madera",
-    "FR": "bois"
-  },
-  "morning": {
-    "DE": "morgen",
-    "ES": "mañana",
-    "FR": "matin"
-  },
-  "rain": {
-    "DE": "regen",
-    "ES": "lluvia",
-    "FR": "pluie"
-  },
-  "shoe": {
-    "DE": "schuhe",
-    "ES": "zapatos",
-    "FR": "chaussures"
-  },
-  "table": {
-    "DE": "tisch",
-    "ES": "mesa",
-    "FR": "tableau"
-  },
-  "picture": {
-    "DE": "bild",
-    "ES": "imagen",
-    "FR": "image"
-  },
-  "school": {
-    "DE": "schule",
-    "ES": "escuela",
-    "FR": "école"
-  },
-  "smile": {
-    "DE": "lächeln",
-    "ES": "sonrisa",
-    "FR": "sourire"
-  },
-  "coat": {
-    "DE": "mantel",
-    "ES": "abrigo",
-    "FR": "manteau"
-  },
-  "cow": {
-    "DE": "kuh",
-    "ES": "vaca",
-    "FR": "vache"
-  },
-  "goodbye": {
-    "DE": "auf wiedersehen",
-    "ES": "adiós",
-    "FR": "au revoir"
-  },
-  "grass": {
-    "DE": "gras",
-    "ES": "hierba",
-    "FR": "herbe"
-  },
-  "leg": {
-    "DE": "bein",
-    "ES": "pierna",
-    "FR": "jambe"
-  },
-  "robin": {
-    "DE": "rotkehlchen",
-    "ES": "petirrojo",
-    "FR": "rouge-gorge"
-  },
-  "girl": {
-    "DE": "mädchen",
-    "ES": "chicas",
-    "FR": "filles"
-  },
-  "hill": {
-    "DE": "hügel",
-    "ES": "colina",
-    "FR": "colline"
-  },
-  "milk": {
-    "DE": "milch",
-    "ES": "leche",
-    "FR": "lait"
-  },
-  "sheep": {
-    "DE": "schaf",
-    "ES": "oveja",
-    "FR": "mouton"
-  },
-  "sister": {
-    "DE": "schwester",
-    "ES": "hermana",
-    "FR": "sœur"
-  },
-  "watch": {
-    "DE": "schauen",
-    "ES": "mirar",
-    "FR": "montre"
-  },
-  "ball": {
-    "DE": "ball",
-    "ES": "pelota",
-    "FR": "balle"
-  },
-  "squirrel": {
-    "DE": "eichhörnchen",
-    "ES": "ardilla",
-    "FR": "écureuil"
-  },
-  "wind": {
-    "DE": "wind",
-    "ES": "viento",
-    "FR": "vent"
-  },
-  "fire": {
-    "DE": "feuer",
-    "ES": "fuego",
-    "FR": "feu"
-  },
-  "floor": {
-    "DE": "boden",
-    "ES": "piso",
-    "FR": "sol"
-  },
-  "horse": {
-    "DE": "pferd",
-    "ES": "caballo",
-    "FR": "cheval"
-  },
-  "home": {
-    "DE": "heim",
-    "ES": "casa",
-    "FR": "maison"
-  },
-  "mother": {
-    "DE": "mutter",
-    "ES": "mamá",
-    "FR": "maman"
-  },
-  "party": {
-    "DE": "feier",
-    "ES": "fiesta",
-    "FR": "fête"
-  },
-  "flower": {
-    "DE": "blumen",
-    "ES": "flor",
-    "FR": "fleur"
-  },
-  "game": {
-    "DE": "spiel",
-    "ES": "juego",
-    "FR": "jeu"
-  },
-  "pig": {
-    "DE": "schwein",
-    "ES": "cerdo",
-    "FR": "cochon"
-  },
-  "bird": {
-    "DE": "vogel",
-    "ES": "pájaro",
-    "FR": "oiseau"
-  },
-  "cat": {
-    "DE": "katze",
-    "ES": "gato",
-    "FR": "chat"
-  },
-  "corn": {
-    "DE": "mais",
-    "ES": "maíz",
-    "FR": "maïs"
-  },
-  "foot": {
-    "DE": "fuß",
-    "ES": "pie",
-    "FR": "pied"
-  }
-}
+[
+  "BELL",
+  "NEST",
+  "PAPER",
+  "STAR",
+  "SONG",
+  "TIME",
+  "APPLE",
+  "BEAR",
+  "CAKE",
+  "BOX",
+  "WATER",
+  "CHOCOLATE",
+  "BACK",
+  "TREE",
+  "BIRTH",
+  "KITTY",
+  "BREAD",
+  "MAN",
+  "BROTHER",
+  "NIGHT",
+  "CHRISTMAS",
+  "SEED",
+  "DAY",
+  "DOG",
+  "BOAT",
+  "FATHER",
+  "SNOW",
+  "GARDEN",
+  "SUN",
+  "DOOR",
+  "TOY",
+  "HAND",
+  "CAR",
+  "LETTER",
+  "EGG",
+  "BED",
+  "HEAD",
+  "CHICKEN",
+  "BOOK",
+  "STORY",
+  "BOY",
+  "WAY",
+  "DOLL",
+  "FARM",
+  "RABBIT",
+  "FRIEND",
+  "STICK",
+  "GROUND",
+  "WINDOW",
+  "NAME",
+  "HOUSE",
+  "BABY",
+  "RING",
+  "THING",
+  "STREET",
+  "TOP",
+  "CHILD",
+  "DUCK",
+  "FISH",
+  "MONEY",
+  "BATH",
+  "CHAIR",
+  "EYE",
+  "WOOD",
+  "MORNING",
+  "RAIN",
+  "SHOE",
+  "TABLE",
+  "PICTURE",
+  "SCHOOL",
+  "SMILE",
+  "COAT",
+  "COW",
+  "GOODBYE",
+  "GRASS",
+  "LEG",
+  "ROBIN",
+  "GIRL",
+  "HILL",
+  "MILK",
+  "SHEEP",
+  "SISTER",
+  "WATCH",
+  "BALL",
+  "SQUIRREL",
+  "WIND",
+  "FIRE",
+  "FLOOR",
+  "HORSE",
+  "HOME",
+  "MOTHER",
+  "PARTY",
+  "FLOWER",
+  "GAME",
+  "PIG",
+  "BIRD",
+  "CAT",
+  "CORN",
+  "FOOT"
+]

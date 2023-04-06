@@ -1,164 +1,209 @@
 {
-  "SUBTITLE": {
-    "EN": "Your language companion",
-    "DE": "Dein Sprachgefährte",
-    "ES": "Tu compañero lingüística",
+  "--- Registering": "",
+  "HELLO_MESSAGE": {
+    "EN": "Hello there! What's your name?",
+    "DE": "Ja moin, digga! Wer bist du denn?",
+    "ES": "¡Hola! ¿Quien eres tu?",
     "FR": ""
   },
-  "PICK_INTERFACE_LANGUAGE": {
-    "EN": "Alrighty, pick one!",
-    "DE": "Alles klar, welche darfs sein?",
-    "ES": "Muy bien, ¿cuál te gustaría?",
-    "FR": ""
+  "WELCOME_MESSAGE %s": {
+    "EN": "Welcome, %s! I'm Lingu, your new language companion…",
+    "DE": "Willkommen, Bruder %s! Ich bin Lingu, dein neues Sprachgefährt….",
+    "ES": "Bienvenido, %s! Yo soy Lingu, tu nuevo compañero lingüístico…"
   },
-  "NEW_INTERFACE_LANGUAGE %s": {
-    "EN": "Wonderful! We'll speak %s…",
-    "DE": "Wunderbar! Dann sprechen wir %s…",
-    "ES": "Estupendo! Hablaremos %s…",
-    "FR": ""
-  },
-  "PICK_LANGUAGE": {
-    "EN": "What language can I teach you?",
-    "DE": "Welche Sprache soll ich dir beibringen?",
-    "ES": "Qué idioma puedo enseñarte?",
-    "FR": ""
-  },
-  "NEW_LANGUAGE %s": {
-    "EN": "%s, a fine choice!",
-    "DE": "%s, eine gute Wahl!",
-    "ES": "%s, ¡una buena elección!",
-    "FR": ""
-  },
+  "--- Menu": "",
   "WELCOME_BACK %s": {
-    "EN": "Welcome back, %s!",
-    "DE": "Willkommen zurück, %s!",
-    "ES": "¡Bienvenido de nuevo, %s!",
-    "FR": ""
+    "EN": "Hiya, %s!",
+    "DE": "Moin, Meister %s!",
+    "ES": "¡Hola, %s!"
   },
   "PICK_ACTIVITY": {
     "EN": "Do you want to",
-    "DE": "Möchtest du",
-    "ES": "¿Quieres",
-    "FR": ""
+    "DE": "Willst du",
+    "ES": "¿Quieres"
   },
   "LEARN_LANGUAGE %s": {
     "EN": "learn some %s?",
-    "DE": "%S lernen?",
-    "ES": "aprender algo de %s?",
-    "FR": ""
+    "DE": "%s lernen?",
+    "ES": "aprender algo de %s?"
   },
-  "CHANGE_INTERFACE_LANGUAGE": {
-    "EN": "change the interface language?",
-    "DE": "die Sprache der Benutzeroberfläche anpassen?",
-    "ES": "cambiar el idioma de la interfaz?",
-    "FR": ""
-  },
-  "CHANGE_LANGUAGE": {
+  "CHANGE_TARGET": {
     "EN": "learn another language? (Your progress will be saved)",
     "DE": "eine andere Sprache lernen? (Dein Fortschritt bleibt erhalten)",
-    "ES": "aprender otro idioma? (Se guardarà tu progreso)",
-    "FR": ""
+    "ES": "aprender otro idioma? (Se guardarà tu progreso)"
+  },
+  "CHANGE_SOURCE": {
+    "EN": "translate from another language?",
+    "DE": "aus einer anderen Sprache übersetzen?",
+    "ES": "traducir de otro idioma?"
   },
   "CHANGE_NAME": {
     "EN": "change your name?",
     "DE": "deinen Namen ändern?",
-    "ES": "cambiarte el nombre?",
-    "FR": ""
+    "ES": "cambiarte el nombre?"
   },
-  "QUIT": {
-    "EN": "leave?",
-    "DE": "aufhören?",
-    "ES": "salir?",
-    "FR": ""
+  "CHANGE_LOCALE": {
+    "EN": "change the interface language?",
+    "DE": "die Sprache der Benutzeroberfläche anpassen?",
+    "ES": "cambiar el idioma de la interfaz?"
+  },
+  "--- Settings": "",
+  "PICK_LOCALE": {
+    "EN": "So, what language should we speak?",
+    "DE": "Alles klar, welche Sprache sollen wir sprechen?",
+    "ES": "Muy bien, ¿en qué idioma deberíamos hablar?"
+  },
+  "NEW_LOCALE %s": {
+    "EN": "Wonderful! We'll speak %s…",
+    "DE": "Geilomatiko! Wir sprechen %s…",
+    "ES": "Estupendo! Hablaremos %s…"
+  },
+  "PICK_SOURCE": {
+    "EN": "What language do you want to translate from?",
+    "DE": "Alles klar, welche Sprache sollen wir sprechen?",
+    "ES": "Muy bien, ¿en qué idioma deberíamos hablar?"
+  },
+  "NEW_SOURCE %s": {
+    "EN": "Perfect! I'll prompt you in %s…",
+    "DE": "Okay, Bre. Ich sag dir in %s an…",
+    "ES": "Vale. Te lo diré en %s…"
+  },
+  "PICK_TARGET": {
+    "EN": "What language can I teach you?",
+    "DE": "Welche Sprache willst du lernen?",
+    "ES": "Qué idioma puedo enseñarte?"
+  },
+  "NEW_TARGET %s": {
+    "EN": "%s, a fine choice!",
+    "DE": "%s, eine gute Wahl!",
+    "ES": "%s, ¡una buena elección!"
   },
   "CHOOSE_NAME": {
     "EN": "What should i call you?",
     "DE": "Wie soll ich dich nennen?",
-    "ES": "¿Como te llamas?",
-    "FR": ""
+    "ES": "¿Como te llamas?"
   },
   "NEW_NAME %s": {
     "EN": "Sure thing, but you will always be the same %s to me!",
     "DE": "Na klar, aber du bleibst immer der alte %s für mich!",
-    "ES": "¡Claro, pero para mí siempre serás el mismo %s!",
-    "FR": ""
+    "ES": "¡Claro, pero para mí siempre serás el mismo %s!"
   },
-  "INVALID_INPUT_TIP_YES_OR_NO": {
-    "EN": "Please type yes or no…",
-    "DE": "Bitte gib y (für ja) oder n (für nein) ein…",
-    "ES": "Por favor, introduzca y (para sí) o n (para no)…",
-    "FR": ""
+  "--- Learning": "",
+  "LETS_START_LEARNING %s": {
+    "EN": "Well, let's learn some %s! ('x' to return to menu)",
+    "DE": "Also dann, lass uns ein bisschen %s lernen! ('x' bringt dich zurück zum Menü)",
+    "ES": "Bueno, ¡vamos a aprender algo de %s! ('x' para volver al menú)"
   },
-  "INVALID_INPUT_TIP_SELECTION": {
-    "EN": "Please pick a value from above…",
-    "DE": "Bitte gib einen Wert aus der Liste ein…",
-    "ES": "Por favor, elija un valor de arriba…",
-    "FR": ""
+  "HOW_TO_TRANSLATE %s %s": {
+    "EN": "How would you translate '%s' into %s?",
+    "DE": "Wie würdest du '%s' in %s sagen?",
+    "ES": "¿Cómo traducirías '%s' al %s?"
+  },
+  "ACKNOWLEDGE_ANSWER %s": {
+    "EN": "%s, huh? It looks like you're…",
+    "DE": "%s? Sieht aus als lägst du…",
+    "ES": "%s, ¿eh? Parece que estás…"
+  },
+  "ANSWER_IS_CORRECT %s": {
+    "EN": "RIGHT! Well done! I'll ask about this one again after %s.",
+    "DE": "RICHTIG! Gut gemacht, Peter! Ich frag dich wieder nach dem %s.",
+    "ES": "¡CORRECTO! ¡Bien hecho! Volveré a preguntar por este después de %s."
+  },
+  "ANSWER_IS_WRONG %s": {
+    "EN": "wrong… It's actually %s. But don't let it get you down, just try again later!",
+    "DE": "falsch… Es ist %s. Aber lass dich nicht unterkriegen, mach einfach weiter!",
+    "ES": "equivocado… Es %s. Pero no dejes que te desanime, ¡sigue adelante!"
+  },
+  "END_OF_LEARNING %s": {
+    "EN": "Good job! You made it through %s words!",
+    "DE": "Sehr gut, Brudi! %s Wörter geballert, nicht schlecht!",
+    "ES": "¡Buen trabajo! ¡Has superado %s palabras!"
+  },
+  "CONTINUE_LEARNING_YES_OR_NO %s %s": {
+    "EN": "Do you want to keep going? (%s|%s)",
+    "DE": "Willst weitermachen du Huan? (%s|%s)",
+    "ES": "¿Quieres seguir? (%s|%s)"
+  },
+  "--- General": "",
+  "QUIT": {
+    "EN": "leave?",
+    "DE": "aufhören?",
+    "ES": "salir?"
+  },
+  "SUBTITLE": {
+    "EN": "Your language companion",
+    "DE": "Dein Sprachgefährte",
+    "ES": "Tu compañero lingüístico"
   },
   "MENU": {
     "EN": "Menu",
     "DE": "Menü",
-    "ES": "Menú",
-    "FR": ""
+    "ES": "Menú"
   },
   "CANCEL": {
     "EN": "Cancel",
     "DE": "Zurück",
-    "ES": "Atrás",
-    "FR": ""
-  },
-  "GOODBYE_MESSAGE %s": {
-    "EN": "Goodbye, %s, see you next time!",
-    "DE": "Auf wiedersehen, %s, bis zum nächsten Mal!",
-    "ES": "Adiós, %s, ¡hasta la próxima!",
-    "FR": ""
-  },
-  "CANCEL_MESSAGE": {
-    "EN": "Okay, then, returning to the menu…",
-    "DE": "Alles klar, zurück zum Menü…",
-    "ES": "Bien, entonces, volviendo al menú…",
-    "FR": ""
-  },
-  "INVALID_INPUT": {
-    "EN": "Invalid input",
-    "DE": "Ungültige Eingabe",
-    "ES": "Entrada no válida",
-    "FR": ""
+    "ES": "Atrás"
   },
   "ENGLISH": {
     "EN": "English",
     "DE": "Englisch",
-    "ES": "Inglés",
-    "FR": ""
+    "ES": "Inglés"
   },
   "GERMAN": {
     "EN": "German",
     "DE": "Deutsch",
-    "ES": "Alemán",
-    "FR": ""
+    "ES": "Alemán"
   },
   "SPANISH": {
     "EN": "Spanish",
     "DE": "Spanisch",
-    "ES": "Español",
-    "FR": ""
+    "ES": "Español"
   },
   "FRENCH": {
     "EN": "French",
     "DE": "Französisch",
-    "ES": "Francés",
-    "FR": ""
+    "ES": "Francés"
+  },
+  "--- Error and Handling": "",
+  "INVALID_INPUT": {
+    "EN": "Invalid input",
+    "DE": "Ungültige Eingabe",
+    "ES": "Entrada no válida"
+  },
+  "INVALID_INPUT_TIP_YES_OR_NO": {
+    "EN": "Please type yes or no…",
+    "DE": "Bitte gib y (für ja) oder n (für nein) ein…",
+    "ES": "Por favor, introduzca y (para sí) o n (para no)…"
+  },
+  "INVALID_INPUT_TIP_SELECTION": {
+    "EN": "Please pick a value from above…",
+    "DE": "Bitte gib einen Wert aus der Liste ein…",
+    "ES": "Por favor, elija un valor de arriba…"
+  },
+  "GOODBYE_MESSAGE %s": {
+    "EN": "Goodbye, %s, see you next time!",
+    "DE": "Auf wiedersehen, %s, bis zum nächsten Mal!",
+    "ES": "Adiós, %s, ¡hasta la próxima!"
+  },
+  "CANCEL_MESSAGE": {
+    "EN": "Alrighty returning to the menu…",
+    "DE": "Alles klar, zurück zum Menü…",
+    "ES": "Bien, entonces, volviendo al menú…"
+  },
+  "YES_SYMBOL": {
+    "EN": "y",
+    "DE": "j",
+    "ES": "s"
+  },
+  "NO_SYMBOL": {
+    "EN": "n",
+    "DE": "n",
+    "ES": "n"
   },
   "": {
     "EN": "",
     "DE": "",
-    "ES": "",
-    "FR": ""
-  },
-  "": {
-    "EN": "",
-    "DE": "",
-    "ES": "",
-    "FR": ""
+    "ES": ""
   }
 }
