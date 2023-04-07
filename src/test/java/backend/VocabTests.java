@@ -1,7 +1,9 @@
-package backend.model;
+package backend;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+
+import backend.model.Vocab;
 
 public class VocabTests {
 

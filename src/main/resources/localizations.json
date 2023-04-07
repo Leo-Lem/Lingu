@@ -3,8 +3,7 @@
   "HELLO_MESSAGE": {
     "EN": "Hello there! What's your name?",
     "DE": "Ja moin, digga! Wer bist du denn?",
-    "ES": "¡Hola! ¿Quien eres tu?",
-    "FR": ""
+    "ES": "¡Hola! ¿Quien eres tu?"
   },
   "WELCOME_MESSAGE %s": {
     "EN": "Welcome, %s! I'm Lingu, your new language companion…",

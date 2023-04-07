@@ -1,4 +1,4 @@
-package backend.services;
+package backend;
 
 public class JSONFileWordGeneratorTests {
 

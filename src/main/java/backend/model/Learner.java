@@ -2,54 +2,28 @@ package backend.model;
 
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Learner {
 
   private String name;
   private Language locale, source, target;
-  private Vocabulary vocabulary;
+  private Vocabulary vocabulary = new Vocabulary();
 
-  public Learner() {
-    this(null, null, null, null, new Vocabulary());
-  }
-
-  @JsonCreator
-  public Learner(
-      @JsonProperty("name") String name,
-      @JsonProperty("locale") Language locale,
-      @JsonProperty("source") Language source,
-      @JsonProperty("target") Language target,
-      @JsonProperty("vocabulary") Vocabulary vocabulary) {
-    this.name = name;
-    this.locale = locale;
-    this.source = source;
-    this.target = target;
-    this.vocabulary = vocabulary;
-  }
-
-  @JsonProperty("name")
   public String getName() {
     return this.name;
   }
 
-  @JsonProperty("locale")
   public Language getLocale() {
     return this.locale;
   }
 
-  @JsonProperty("source")
   public Language getSource() {
     return this.source;
   }
 
-  @JsonProperty("target")
   public Language getTarget() {
     return this.target;
   }
 
-  @JsonProperty("vocabulary")
   public Vocabulary getVocabulary() {
     return this.vocabulary;
   }
@@ -71,6 +45,11 @@ public class Learner {
 
   public Learner setLocale(Language locale) {
     this.locale = locale;
+    return this;
+  }
+
+  public Learner setVocabulary(Vocabulary vocabulary) {
+    this.vocabulary = vocabulary;
     return this;
   }
 

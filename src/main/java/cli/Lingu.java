@@ -9,7 +9,7 @@ public class Lingu {
 
   public static void main(String[] args) {
     Lingu lingu = new Lingu();
-    lingu.start();
+    lingu.run();
   }
 
   private final Environment env;
@@ -22,7 +22,7 @@ public class Lingu {
     this.env = env;
   }
 
-  public void start() {
+  public void run() {
     Printer printer = env.getPrinter();
 
     try {

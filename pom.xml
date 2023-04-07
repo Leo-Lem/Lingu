@@ -9,7 +9,7 @@
     <name>Lingu</name>
 
     <properties>
-        <exec.mainClass>lingu.Lingu</exec.mainClass>
+        <exec.mainClass>cli.Lingu</exec.mainClass>
         <jackson.version>2.14.2</jackson.version>
         <junit.version>4.13.2</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

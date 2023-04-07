@@ -39,7 +39,7 @@ public class Vocab {
   public Vocab(
       @JsonProperty("word") String word,
       @JsonProperty("source") Language source,
-      @JsonProperty("language") Language target,
+      @JsonProperty("target") Language target,
       @JsonProperty("stage") Integer stage,
       @JsonProperty("nextUp") LocalDateTime nextUp) {
     this.word = word;
@@ -49,42 +49,22 @@ public class Vocab {
     this.nextUp = nextUp;
   }
 
-  @JsonProperty("word")
   public String getWord() {
     return this.word;
   }
 
-  @JsonProperty("source")
   public Language getSource() {
     return this.source;
   }
 
-  @JsonProperty("target")
   public Language getTarget() {
     return this.target;
   }
 
-  /**
-   * The stage details the current memorization level of the vocab:
-   * 0 (not learned),
-   * 1 (short term),
-   * 2 (medium-short term),
-   * 3 (medium term),
-   * 4 (learned)
-   *
-   * @return Integer representing the current stage
-   */
-  @JsonProperty("stage")
   public Integer getStage() {
     return this.stage;
   }
 
-  /**
-   * The date after which the vocab should be presented again.
-   *
-   * @return LocalDateTime representing the current nextUp
-   */
-  @JsonProperty("nextUp")
   public LocalDateTime getNextUp() {
     return this.nextUp;
   }
