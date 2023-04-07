@@ -32,7 +32,7 @@ public class JSONFileLocalizerTests {
 
   @Test
   public void whenLocalizingWithArgument_thenReturnsSomeLocalization() {
-    String key = "NEW_INTERFACE_LANGUAGE";
+    String key = "NEW_LOCALE";
     Language argument = Language.GERMAN;
 
     String localized = localizer.localize(key, argument);

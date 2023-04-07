@@ -23,37 +23,33 @@ public class Prompter {
   }
 
   public String readNextString(String name) throws CancellationException {
-    printer.print(new Message(localizer).asLearner(name).build());
-
+    prompt(name);
     String input = scanner.nextLine();
-
-    if (input.equals("x"))
-      throw new CancellationException();
-
+    cancelIfX(input);
     return input;
   }
 
   public Boolean readYesOrNo(String name) {
-    Boolean englishAsInterfaceLanguage = null;
+    Boolean isYes = null;
 
-    while (englishAsInterfaceLanguage == null) {
-      printer.print(new Message(localizer)
-          .asLearner(name)
-          .build());
+    while (isYes == null) {
+      prompt(name);
       String input = scanner.nextLine();
 
       if (input.contains(localizer.localize("YES_SYMBOL")))
-        englishAsInterfaceLanguage = true;
+        isYes = true;
       else if (input.contains(localizer.localize("NO_SYMBOL")))
-        englishAsInterfaceLanguage = false;
-      else
+        isYes = false;
+      else {
+        cancelIfX(input);
         printer.print(new Message(localizer)
-            .set("INVALID_INPUT_TIP_YES_OR_NO")
+            .set("YES_OR_NO_TIP")
             .asInvalidInputError()
             .build());
+      }
     }
 
-    return englishAsInterfaceLanguage;
+    return isYes;
   }
 
   public Language readLanguage(String name, Language[] languages, Language... unsupported) {
@@ -61,11 +57,11 @@ public class Prompter {
     supported.removeAll(Arrays.asList(unsupported));
 
     supported.stream()
-        .forEach(
-            language -> printer.println(new Message(localizer)
-                .set(language)
-                .asOption(supported.indexOf(language) + 1)
-                .build()));
+        .forEach(language -> printer.println(new Message(localizer)
+            .set(language)
+            .asOption(supported.indexOf(language) + 1)
+            .build()));
+
     printer.println(new Message(localizer)
         .set("CANCEL")
         .asOption("x")
@@ -79,10 +75,7 @@ public class Prompter {
 
     while (selection == null) {
       try {
-        printer.print(
-            new Message(localizer)
-                .asLearner(name)
-                .build());
+        prompt(name);
         String input = scanner.nextLine();
 
         try {
@@ -91,8 +84,7 @@ public class Prompter {
           if (0 < index && index <= endIndex)
             selection = index;
         } catch (NumberFormatException e) {
-          if (input.contains("x"))
-            throw new CancellationException();
+          cancelIfX(input);
         }
       } catch (InputMismatchException e) {
       } catch (NoSuchElementException e) {
@@ -101,12 +93,21 @@ public class Prompter {
 
       if (selection == null)
         printer.print(new Message(localizer)
-            .set("INVALID_INPUT_TIP_SELECTION")
+            .set("SELECTION_TIP")
             .asInvalidInputError()
             .build());
     }
 
     return selection;
+  }
+
+  private void prompt(String name) {
+    printer.print(new Message(localizer).asLearner(name).build());
+  }
+
+  private void cancelIfX(String input) throws CancellationException {
+    if (input.equals("x"))
+      throw new CancellationException();
   }
 
 }

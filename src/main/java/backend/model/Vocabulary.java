@@ -22,8 +22,12 @@ public class Vocabulary implements Iterable<Vocab> {
     return vocabs.toArray(new Vocab[] {});
   }
 
-  public Vocab get(Integer index) {
-    return vocabs.get(index);
+  public Vocab get(Vocab vocab) {
+    try {
+      return vocabs.get(vocabs.indexOf(vocab));
+    } catch (IndexOutOfBoundsException e) {
+      return null;
+    }
   }
 
   public Vocabulary prefix(Integer count) {
@@ -36,7 +40,7 @@ public class Vocabulary implements Iterable<Vocab> {
             .filter(vocab -> vocab.getSource().equals(source)
                 && vocab.getTarget().equals(target)
                 && vocab.getNextUp().isBefore(LocalDateTime.now()))
-            .sorted((vocab, other) -> other.getNextUp().compareTo(vocab.getNextUp()))
+            .sorted((vocab, other) -> vocab.getNextUp().compareTo(other.getNextUp()))
             .collect(Collectors.toList())
             .toArray(new Vocab[] {}));
   }
@@ -91,12 +95,12 @@ public class Vocabulary implements Iterable<Vocab> {
 
     @Override
     public boolean hasNext() {
-      return currentIndex < vocabs.size() && get(currentIndex) != null;
+      return currentIndex < vocabs.size() && vocabs.get(currentIndex) != null;
     }
 
     @Override
     public Vocab next() {
-      return get(currentIndex++);
+      return vocabs.get(currentIndex++);
     }
 
   }

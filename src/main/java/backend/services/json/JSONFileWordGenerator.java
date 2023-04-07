@@ -11,12 +11,12 @@ public class JSONFileWordGenerator implements WordGenerator {
   private final String[] words;
 
   public JSONFileWordGenerator() throws IllegalStateException {
-    this(new JSONFilePersistor("src/main/resources/words.json"));
+    this(new JSONFilePersistor<>(String[].class, "src/main/resources/words.json"));
   }
 
-  public JSONFileWordGenerator(Persistor persistor) throws IllegalStateException {
+  public JSONFileWordGenerator(Persistor<String[]> persistor) throws IllegalStateException {
     try {
-      this.words = persistor.load(String[].class).get();
+      this.words = persistor.load().get();
     } catch (NoSuchElementException e) {
       throw new IllegalStateException("The translations file cannot be located…");
     } catch (ClassCastException e) {

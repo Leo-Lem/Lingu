@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.*;
 
 public class Vocab {
 
-  private static final Integer FINAL_STAGE = 10;
-  private static final Map<Integer, TemporalAmount> SRS_INTERVALS;
+  public static final Integer FINAL_STAGE = 10;
+  public static final Map<Integer, TemporalAmount> SRS_INTERVALS;
   static {
     SRS_INTERVALS = new HashMap<>();
     SRS_INTERVALS.put(0, Duration.ZERO);

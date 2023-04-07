@@ -47,4 +47,16 @@ public class Message {
     return content;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    else if (o == null || getClass() != o.getClass())
+      return false;
+    else {
+      Message message = (Message) o;
+      return message.content.equals(content) && message.localizer.equals(localizer);
+    }
+  }
+
 }

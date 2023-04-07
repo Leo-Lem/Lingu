@@ -8,7 +8,7 @@ public class Environment {
   private final Localizer localizer;
   private final Translator translator;
   private final WordGenerator wordGenerator;
-  private final Persistor learnerPersistor;
+  private final Persistor<Learner> learnerPersistor;
   private final Printer printer;
   private final Prompter prompter;
 
@@ -28,19 +28,15 @@ public class Environment {
         localizer,
         new JSONFileTranslator(),
         new JSONFileWordGenerator(),
-        new JSONFilePersistor("target/learner.json"),
+        new JSONFilePersistor<Learner>(Learner.class, "target/learner.json"),
         printer,
         prompter);
   }
 
   public Environment(
       Learner learner,
-      Localizer localizer,
-      Translator translator,
-      WordGenerator wordGenerator,
-      Persistor learnerPersistor,
-      Printer printer,
-      Prompter prompter) {
+      Localizer localizer, Translator translator, WordGenerator wordGenerator,
+      Persistor<Learner> learnerPersistor, Printer printer, Prompter prompter) {
     this.learner = learner;
 
     this.localizer = localizer;
@@ -52,9 +48,7 @@ public class Environment {
 
     if (learner == null) {
       setLearner(
-          learnerPersistor
-              .load(Learner.class)
-              .orElse(new Learner().setLocale(localizer.getLanguage())));
+          learnerPersistor.load().orElse(new Learner().setLocale(localizer.getLanguage())));
     }
   }
 
@@ -84,6 +78,10 @@ public class Environment {
 
   public Message getLocalizedMessage() {
     return new Message(localizer);
+  }
+
+  public Learner setLearner() {
+    return setLearner(learner);
   }
 
   public Learner setLearner(Learner learner) {

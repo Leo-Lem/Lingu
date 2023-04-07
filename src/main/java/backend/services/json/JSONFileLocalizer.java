@@ -4,25 +4,45 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import backend.model.Language;
-import backend.services.interfaces.Localizer;
-import backend.services.interfaces.Persistor;
+import com.fasterxml.jackson.annotation.*;
+
+import backend.model.*;
+import backend.services.interfaces.*;
 
 public class JSONFileLocalizer implements Localizer {
 
+  @JsonFormat(shape = JsonFormat.Shape.OBJECT)
+  public static class Localizations {
+    private Map<String, Map<String, String>> localizations;
+
+    @JsonCreator
+    public Localizations(Map<String, Map<String, String>> localizations) {
+      this.localizations = localizations;
+    }
+
+    @JsonValue
+    public Map<String, Map<String, String>> getLocalizations() {
+      return localizations;
+    }
+
+    public Optional<String> get(Object key, Language language) {
+      return Optional.ofNullable(localizations.get(key.toString()))
+          .flatMap(localization -> Optional.ofNullable(localization.get(language.getCode())));
+    }
+  }
+
   private Language language;
-  private final Map<String, Map<String, String>> localizations;
+  private final Localizations localizations;
 
   public JSONFileLocalizer() {
     this(Language.defaultLanguage());
   }
 
   public JSONFileLocalizer(Language language) {
-    this(language, new JSONFilePersistor("src/main/resources/localizations.json"));
+    this(language, new JSONFilePersistor<>(Localizations.class, "src/main/resources/localizations.json"));
   }
 
-  @SuppressWarnings("unchecked")
-  public JSONFileLocalizer(Language language, Persistor persistor)
+  public JSONFileLocalizer(Language language, Persistor<Localizations> persistor)
       throws IllegalArgumentException, IllegalStateException {
     if (!Arrays.asList(getSupportedLanguages()).contains(language))
       throw new IllegalArgumentException("Language is not available: " + language);
@@ -30,11 +50,9 @@ public class JSONFileLocalizer implements Localizer {
     this.language = language;
 
     try {
-      this.localizations = persistor.load(Map.class).get();
-    } catch (NoSuchElementException e) {
-      throw new IllegalStateException("The localizations file cannot be located…");
-    } catch (ClassCastException e) {
-      throw new IllegalStateException("The localizations file for " + language + " is corrupted…");
+      this.localizations = persistor.load().get();
+    } catch (Exception e) {
+      throw new IllegalStateException("The localizations file cannot be loaded: " + e.getMessage());
     }
   }
 
@@ -66,9 +84,7 @@ public class JSONFileLocalizer implements Localizer {
   }
 
   public String localize(Object key) {
-    return Optional.ofNullable(localizations.get(key.toString()))
-        .flatMap(localization -> Optional.ofNullable(localization.get(language.getCode())))
-        .orElse(key.toString());
+    return localizations.get(key, language).orElse(key.toString());
   }
 
 }

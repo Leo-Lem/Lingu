@@ -171,12 +171,12 @@
     "DE": "Ungültige Eingabe",
     "ES": "Entrada no válida"
   },
-  "INVALID_INPUT_TIP_YES_OR_NO": {
+  "YES_OR_NO_TIP": {
     "EN": "Please type yes or no…",
     "DE": "Bitte gib y (für ja) oder n (für nein) ein…",
     "ES": "Por favor, introduzca y (para sí) o n (para no)…"
   },
-  "INVALID_INPUT_TIP_SELECTION": {
+  "SELECTION_TIP": {
     "EN": "Please pick a value from above…",
     "DE": "Bitte gib einen Wert aus der Liste ein…",
     "ES": "Por favor, elija un valor de arriba…"

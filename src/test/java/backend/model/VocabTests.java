@@ -22,15 +22,15 @@ public class VocabTests {
   }
 
   @Test
-  public void givenStageIs5_whenAdvancingStage_thenStays5() {
+  public void givenStageIsAtFinal_whenAdvancingStage_thenStaysAt10() {
     Vocab vocab = new Vocab(null, null, null);
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < Vocab.FINAL_STAGE; i++)
       vocab.advanceStage();
-    assertStageIs(5, vocab);
+    assertStageIs(Vocab.FINAL_STAGE, vocab);
 
     vocab.advanceStage();
 
-    assertStageIs(5, vocab);
+    assertStageIs(Vocab.FINAL_STAGE, vocab);
   }
 
   private void assertStageIs(int stage, Vocab vocab) {

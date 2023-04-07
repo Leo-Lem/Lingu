@@ -1,30 +1,49 @@
 package backend.services.json;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
+import java.util.Map.Entry;
 
-import backend.model.Language;
-import backend.model.Vocab;
-import backend.services.interfaces.Persistor;
-import backend.services.interfaces.Translator;
+import com.fasterxml.jackson.annotation.*;
+
+import backend.model.*;
+import backend.services.interfaces.*;
 
 public class JSONFileTranslator implements Translator {
-  private Map<String, Map<String, String>> translations;
+  @JsonFormat(shape = JsonFormat.Shape.OBJECT)
+  public static class Translations {
+    private Map<String, Map<String, String>> translations;
 
-  public JSONFileTranslator() throws IllegalStateException {
-    this(new JSONFilePersistor("src/main/resources/translations.json"));
+    @JsonCreator
+    public Translations(Map<String, Map<String, String>> translations) {
+      this.translations = translations;
+    }
+
+    @JsonValue
+    public Map<String, Map<String, String>> getTranslations() {
+      return translations;
+    }
+
+    public Optional<String> get(Object key, Language language) {
+      return Optional.ofNullable(translations.get(key.toString()))
+          .flatMap(translation -> Optional.ofNullable(translation.get(language.getCode())));
+    }
+
+    public Set<Entry<String, Map<String, String>>> entrySet() {
+      return translations.entrySet();
+    }
   }
 
-  @SuppressWarnings("unchecked")
-  public JSONFileTranslator(Persistor persistor) throws IllegalStateException {
+  private Translations translations;
+
+  public JSONFileTranslator() throws IllegalStateException {
+    this(new JSONFilePersistor<>(Translations.class, "src/main/resources/translations.json"));
+  }
+
+  public JSONFileTranslator(Persistor<Translations> persistor) throws IllegalStateException {
     try {
-      this.translations = persistor.load(Map.class).get();
-    } catch (NoSuchElementException e) {
-      throw new IllegalStateException("The translations file cannot be located…");
-    } catch (ClassCastException e) {
-      throw new IllegalStateException("The translations file is corrupted and needs to be replaced…");
+      this.translations = persistor.load().get();
+    } catch (Exception e) {
+      throw new IllegalStateException("The localizations file cannot be loaded: " + e.getMessage());
     }
   }
 
@@ -45,12 +64,7 @@ public class JSONFileTranslator implements Translator {
       throw new IllegalArgumentException("Language is not available.");
 
     if (source.equals(Language.BASE)) {
-      Map<String, String> translation = translations.get(word);
-
-      if (translation != null) {
-        String translatedWord = translation.get(target.getCode());
-        return Optional.ofNullable(translatedWord);
-      }
+      return translations.get(word, target);
     } else {
       for (Map.Entry<String, Map<String, String>> entry : translations.entrySet()) {
         Map<String, String> translation = entry.getValue();

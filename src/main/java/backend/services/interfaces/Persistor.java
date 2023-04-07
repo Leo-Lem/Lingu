@@ -2,12 +2,10 @@ package backend.services.interfaces;
 
 import java.util.Optional;
 
-public interface Persistor {
+public interface Persistor<T> {
 
-  String getPathname();
+  Optional<T> load();
 
-  <T> Optional<T> load(Class<T> type);
-
-  <T> void save(T object);
+  void save(T object);
 
 }

@@ -40,8 +40,8 @@ public class Learn {
               .set("ACKNOWLEDGE_ANSWER", answer).asLingu().build());
 
           handleAnswer(answer, translation.get(), vocab);
-
-          env.setLearner(learner);
+          learner.getVocabulary().add(vocab);
+          env.setLearner();
         }
       }
 
@@ -69,15 +69,14 @@ public class Learn {
 
   private void handleAnswer(String answer, String translation, Vocab vocab) {
     if (answer.equalsIgnoreCase(translation)) {
-      env.getPrinter().println(env.getLocalizedMessage()
-          .set(
-              "ANSWER_IS_CORRECT", vocab.getNextUp().format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm a")))
-          .asLingu().build());
       vocab.advanceStage();
+      env.getPrinter().println(env.getLocalizedMessage()
+          .set("ANSWER_IS_CORRECT", vocab.getNextUp().format(DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm a")))
+          .asLingu().build());
     } else {
+      vocab.resetStage();
       env.getPrinter().println(env.getLocalizedMessage()
           .set("ANSWER_IS_WRONG", translation).asLingu().build());
-      vocab.resetStage();
     }
   }
 

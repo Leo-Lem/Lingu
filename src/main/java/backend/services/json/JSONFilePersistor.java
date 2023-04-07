@@ -1,39 +1,34 @@
 package backend.services.json;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 import java.util.Optional;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import backend.services.interfaces.Persistor;
 
-public class JSONFilePersistor implements Persistor {
+public class JSONFilePersistor<T> implements Persistor<T> {
 
   private final ObjectMapper mapper;
-  private String pathname;
+  private final Class<T> type;
+  private final String pathname;
 
-  public JSONFilePersistor(String pathname) {
-    this(pathname, new ObjectMapper().registerModule(new JavaTimeModule()));
+  public JSONFilePersistor(Class<T> type, String pathname) {
+    this(type, pathname, new ObjectMapper()
+        .registerModule(new JavaTimeModule())
+        .enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT));
   }
 
-  public JSONFilePersistor(String pathname, ObjectMapper mapper) {
+  public JSONFilePersistor(Class<T> type, String pathname, ObjectMapper mapper) {
+    this.type = type;
     this.pathname = pathname;
     this.mapper = mapper;
   }
 
   @Override
-  public String getPathname() {
-    return pathname;
-  }
-
-  @Override
-  public <T> Optional<T> load(Class<T> type) {
+  public Optional<T> load() {
     File file = new File(pathname);
 
     try (Reader reader = new FileReader(file)) {
@@ -47,7 +42,7 @@ public class JSONFilePersistor implements Persistor {
   }
 
   @Override
-  public <T> void save(T object) {
+  public void save(T object) {
     File file = new File(pathname);
 
     try (Writer writer = new FileWriter(file)) {

@@ -59,9 +59,8 @@ public class Register {
         .set("PICK_SOURCE").asLingu().build());
 
     Language language = env.getPrompter().readLanguage(
-        env.getLearner().getName(), env.getLocalizer().getSupportedLanguages(), Language.BASE);
-
-    env.getLocalizer().setLanguage(language);
+        env.getLearner().getName(), env.getTranslator().getSupportedLanguages(),
+        Language.BASE, env.getLearner().getTarget());
 
     env.getPrinter().println(env.getLocalizedMessage()
         .set("NEW_SOURCE", language).asLingu().build());
