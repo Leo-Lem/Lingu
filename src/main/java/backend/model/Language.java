@@ -20,6 +20,13 @@ public enum Language {
     return this.code;
   }
 
+  public static Language valueOfCode(String code) {
+    for (Language e : values())
+      if (e.code.equals(code))
+        return e;
+    return null;
+  }
+
   public static Language defaultLanguage() {
     String systemLanguageCode = Locale.getDefault().getLanguage();
     Map<String, Language> codeToLanguage = new HashMap<>();
