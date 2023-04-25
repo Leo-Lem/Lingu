@@ -1,4 +1,12 @@
-.DS_Store
 target
+
+# macOS
+.DS_Store
+
+# VSCode
 *.code-workspace
 .vscode
+
+# Derby
+derby.log
+LinguDB
