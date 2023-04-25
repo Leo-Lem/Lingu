@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import backend.model.Language;
 import backend.model.Learner;
+import backend.services.implementations.JSONFilePersistor;
 import backend.services.interfaces.Persistor;
-import backend.services.json.JSONFilePersistor;
 
 public class JSONFilePersistorTests {
 

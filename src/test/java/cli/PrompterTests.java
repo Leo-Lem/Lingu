@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutionException;
 import org.junit.Test;
 
 import backend.model.*;
-import backend.services.json.JSONFileLocalizer;
+import backend.services.implementations.JSONFileLocalizer;
 import cli.lib.*;
 import lib.InputOutputTests;
 

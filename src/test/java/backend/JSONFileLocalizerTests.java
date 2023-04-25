@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import backend.model.Language;
+import backend.services.implementations.JSONFileLocalizer;
 import backend.services.interfaces.Localizer;
-import backend.services.json.JSONFileLocalizer;
 
 public class JSONFileLocalizerTests {
 

@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import backend.model.*;
+import backend.services.implementations.JSONFileLocalizer;
 import backend.services.interfaces.*;
-import backend.services.json.JSONFileLocalizer;
 import cli.lib.*;
 import lib.InMemoryPersistor;
 

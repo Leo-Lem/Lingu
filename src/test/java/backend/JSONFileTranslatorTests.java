@@ -7,8 +7,8 @@ import java.util.Optional;
 import org.junit.Test;
 
 import backend.model.Language;
+import backend.services.implementations.JSONFileTranslator;
 import backend.services.interfaces.Translator;
-import backend.services.json.JSONFileTranslator;
 
 public class JSONFileTranslatorTests {
 
