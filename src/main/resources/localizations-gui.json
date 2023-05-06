@@ -74,19 +74,29 @@
     "DE": "Französisch",
     "ES": "Francés"
   },
-  "": {
-    "EN": "",
-    "DE": "",
-    "ES": ""
+  "QUESTION %s %s": {
+    "EN": "What's '%s' in %s?",
+    "DE": "Was heißt '%s' auf %s?",
+    "ES": "¿Qué significa '%s' en %s?"
   },
-  "": {
-    "EN": "",
-    "DE": "",
-    "ES": ""
+  "YOUR_ANSWER": {
+    "EN": "Your answer",
+    "DE": "Deine Antwort",
+    "ES": "Tu respuesta"
   },
-  "": {
-    "EN": "",
-    "DE": "",
-    "ES": ""
+  "SUBMIT": {
+    "EN": "Submit",
+    "DE": "Abschicken",
+    "ES": "Enviar"
+  },
+  "CONTINUE": {
+    "EN": "Continue",
+    "DE": "Weiter",
+    "ES": "Continuar"
+  },
+  "BACK_TO_MENU": {
+    "EN": "Return",
+    "DE": "Menü",
+    "ES": "Menú"
   }
 }

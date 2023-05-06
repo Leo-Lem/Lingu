@@ -128,7 +128,7 @@ public class Lingu extends JFrame {
     if (settings != null)
       settings.update(localizer, learner.getName(), learner.getTarget(), learner.getSource(), learner.getLocale());
     if (learn != null)
-      learn.setLocalizer(localizer);
+      learn.update(localizer, "word", learner.getTarget(), "", true); // TODO: add word
 
     // TODO: persist learner
 
