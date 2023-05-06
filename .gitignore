@@ -1,4 +1,5 @@
 target
+*.log
 
 # macOS
 .DS_Store
@@ -6,6 +7,3 @@ target
 # VSCode
 *.code-workspace
 .vscode
-
-# Derby
-derby.log
