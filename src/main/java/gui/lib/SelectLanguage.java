@@ -64,6 +64,7 @@ public class SelectLanguage extends JPanel {
         selected = language;
       }
     });
+    button.setSelected(language.equals(selected));
     group.add(button);
     return button;
   }

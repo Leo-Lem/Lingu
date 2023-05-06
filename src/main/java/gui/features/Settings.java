@@ -13,8 +13,7 @@ public class Settings extends JPanel {
   private final NavigateTo navigateTo;
 
   private JLabel title;
-  private JPanel namePanel;
-  private JTextArea nameField;
+  private JPanel enterName;
   private SelectLanguage selectTargetLanguage;
   private SelectLanguage selectSourceLanguage;
   private SelectLanguage selectInterfaceLanguage;
@@ -25,7 +24,7 @@ public class Settings extends JPanel {
     this.navigateTo = navigateTo;
 
     setupTitle();
-    setupName();
+    setupEnterName();
     setupTargetLanguage();
     setupSourceLanguage();
     setupInterfaceLanguage();
@@ -40,15 +39,8 @@ public class Settings extends JPanel {
     title.setText("Adjust your settings");
   }
 
-  private void setupName() {
-    nameField = new JTextArea();
-    nameField.setColumns(30);
-    nameField.setRows(1);
-
-    namePanel = new JPanel();
-    namePanel.setBorder(BorderFactory.createTitledBorder("Your Name"));
-    namePanel.setToolTipText("Please enter your name");
-    namePanel.add(nameField);
+  private void setupEnterName() {
+    enterName = new EnterName();
   }
 
   private void setupTargetLanguage() {
@@ -100,7 +92,7 @@ public class Settings extends JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(namePanel,
+                    .addComponent(enterName,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(title,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -123,7 +115,7 @@ public class Settings extends JPanel {
                 .addContainerGap()
                 .addComponent(title, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(namePanel,
+                .addComponent(enterName,
                     GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
