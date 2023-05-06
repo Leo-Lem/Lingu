@@ -1,6 +1,8 @@
 package gui.features;
 
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.event.*;
 import java.util.*;
 
@@ -65,7 +67,16 @@ public class Register extends JPanel {
     register.setText("Register");
     register.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
-        // TODO: validate inputs and save new learner
+        if (enterName.getName().length() < 2) {
+          enterName.setBackground(Color.RED);
+          return;
+        }
+
+        env.setLearner(env.getLearner()
+            .setName(enterName.getName())
+            .setSource(selectSourceLanguage.getSelected())
+            .setTarget(selectTargetLanguage.getSelected()));
+
         navigateTo.execute("menu");
       }
     });

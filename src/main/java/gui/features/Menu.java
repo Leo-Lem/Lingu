@@ -29,7 +29,7 @@ public class Menu extends JPanel {
     title = new JLabel();
     title.setFont(new Font("Helvetica Neue", 0, 36));
     title.setHorizontalAlignment(SwingConstants.CENTER);
-    title.setText("Hello there, {learner}!");
+    title.setText("Hello there, " + env.getLearner().getName() + "!");
   }
 
   private void setupLearnButton() {

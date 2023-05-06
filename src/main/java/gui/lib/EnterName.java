@@ -27,6 +27,7 @@ public class EnterName extends JPanel {
         name = field.getText();
       }
     });
+    field.getDocument().putProperty("filterNewlines", Boolean.TRUE);
   }
 
   private void setup() {

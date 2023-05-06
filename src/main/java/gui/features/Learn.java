@@ -41,6 +41,7 @@ public class Learn extends JPanel {
     answerField = new JTextArea();
     answerField.setColumns(30);
     answerField.setRows(1);
+    answerField.getDocument().putProperty("filterNewlines", Boolean.TRUE);
 
     answerPanel = new JPanel();
     answerPanel.setBorder(BorderFactory.createTitledBorder("Your Answer"));
