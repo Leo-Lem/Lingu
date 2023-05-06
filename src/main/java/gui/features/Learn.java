@@ -10,31 +10,31 @@ public class Learn extends JPanel {
   private final Environment env;
   private final NavigateTo navigateTo;
 
-  private JLabel titleLabel;
+  private JLabel title;
   private JPanel answerPanel;
   private JTextArea answerField;
-  private JLabel resultLabel;
-  private JButton submitContinueButton;
-  private JButton returnButton;
+  private JLabel result;
+  private JButton submitContinue;
+  private JButton backToMenu;
 
   public Learn(Environment env, NavigateTo navigateTo) {
     this.env = env;
     this.navigateTo = navigateTo;
 
-    setupTitleLabel();
+    setupTitle();
     setupAnswer();
-    setupResultLabel();
-    setupSubmitContinueButton();
-    setupReturnButton();
+    setupResult();
+    setupSubmitContinue();
+    setupBackToMenu();
 
     setupLayout();
   }
 
-  private void setupTitleLabel() {
-    titleLabel = new JLabel();
-    titleLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 36));
-    titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    titleLabel.setText("What's {word} in {language}?");
+  private void setupTitle() {
+    title = new JLabel();
+    title.setFont(new java.awt.Font("Helvetica Neue", 0, 36));
+    title.setHorizontalAlignment(SwingConstants.CENTER);
+    title.setText("What's {word} in {language}?");
   }
 
   private void setupAnswer() {
@@ -48,27 +48,27 @@ public class Learn extends JPanel {
     answerPanel.add(answerField);
   }
 
-  private void setupResultLabel() {
-    resultLabel = new JLabel();
-    resultLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-    resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    resultLabel.setText("Result");
+  private void setupResult() {
+    result = new JLabel();
+    result.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+    result.setHorizontalAlignment(SwingConstants.CENTER);
+    result.setText("Result");
   }
 
-  private void setupSubmitContinueButton() {
-    submitContinueButton = new JButton();
-    submitContinueButton.setText("Submit / Continue");
-    submitContinueButton.addActionListener(new ActionListener() {
+  private void setupSubmitContinue() {
+    submitContinue = new JButton();
+    submitContinue.setText("Submit / Continue");
+    submitContinue.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
         // TODO: submit / continue
       }
     });
   }
 
-  private void setupReturnButton() {
-    returnButton = new JButton();
-    returnButton.setText("{Return}");
-    returnButton.addActionListener(new ActionListener() {
+  private void setupBackToMenu() {
+    backToMenu = new JButton();
+    backToMenu.setText("Return");
+    backToMenu.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
         navigateTo.execute("menu");
       }
@@ -87,15 +87,15 @@ public class Learn extends JPanel {
                     GroupLayout.Alignment.LEADING)
                     .addComponent(answerPanel,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(titleLabel,
+                    .addComponent(title,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(resultLabel,
+                    .addComponent(result,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(submitContinueButton,
+                        .addComponent(submitContinue,
                             GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(returnButton,
+                        .addComponent(backToMenu,
                             GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, 50)))
                 .addContainerGap()));
 
@@ -104,18 +104,18 @@ public class Learn extends JPanel {
             .addGroup(GroupLayout.Alignment.TRAILING, layout
                 .createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleLabel,
+                .addComponent(title,
                     GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(answerPanel,
                     GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultLabel,
+                .addComponent(result,
                     GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addComponent(submitContinueButton,
+                    .addComponent(submitContinue,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(returnButton,
+                    .addComponent(backToMenu,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap()));
   }

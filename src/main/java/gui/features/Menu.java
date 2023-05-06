@@ -11,9 +11,9 @@ public class Menu extends JPanel {
   private final Environment env;
   private final NavigateTo navigateTo;
 
-  private JLabel titleLabel;
-  private JButton learnButton;
-  private JButton settingsButton;
+  private JLabel title;
+  private JButton learn;
+  private JButton settings;
 
   public Menu(Environment env, NavigateTo navigateTo) {
     this.env = env;
@@ -26,16 +26,16 @@ public class Menu extends JPanel {
   }
 
   private void setupTitleLabel() {
-    titleLabel = new JLabel();
-    titleLabel.setFont(new Font("Helvetica Neue", 0, 36));
-    titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    titleLabel.setText("Hello there!");
+    title = new JLabel();
+    title.setFont(new Font("Helvetica Neue", 0, 36));
+    title.setHorizontalAlignment(SwingConstants.CENTER);
+    title.setText("Hello there, {learner}!");
   }
 
   private void setupLearnButton() {
-    learnButton = new JButton();
-    learnButton.setText("Learn language");
-    learnButton.addActionListener(new ActionListener() {
+    learn = new JButton();
+    learn.setText("Learn language");
+    learn.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
         navigateTo.execute("learn");
       }
@@ -43,9 +43,9 @@ public class Menu extends JPanel {
   }
 
   private void setupSettingsButton() {
-    settingsButton = new JButton();
-    settingsButton.setText("Settings");
-    settingsButton.addActionListener(new ActionListener() {
+    settings = new JButton();
+    settings.setText("Settings");
+    settings.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
         navigateTo.execute("settings");
       }
@@ -62,25 +62,28 @@ public class Menu extends JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                    .addComponent(title,
+                        GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(learnButton, GroupLayout.DEFAULT_SIZE,
-                            GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(learn,
+                            GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(settingsButton, GroupLayout.PREFERRED_SIZE, 108,
-                            GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(settings,
+                            GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap()));
 
     layout.setVerticalGroup(
         layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addComponent(title,
+                    GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addComponent(learnButton, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                    .addComponent(settingsButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE))
+                    .addComponent(learn,
+                        GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                    .addComponent(settings,
+                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap()));
   }
 

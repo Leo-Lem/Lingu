@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 
-import backend.model.*;
+import backend.model.Language;
 import gui.lib.*;
 
 public class Register extends JPanel {
@@ -12,12 +12,12 @@ public class Register extends JPanel {
   private final Environment env;
   private final NavigateTo navigateTo;
 
-  private JLabel titleLabel;
+  private JLabel title;
   private JPanel namePanel;
-  private JTextArea nameTextArea;
+  private JTextArea nameField;
   private SelectLanguage selectTargetLanguage;
   private SelectLanguage selectSourceLanguage;
-  private JButton registerButton;
+  private JButton register;
 
   public Register(Environment env, NavigateTo navigateTo) {
     this.env = env;
@@ -32,20 +32,21 @@ public class Register extends JPanel {
   }
 
   private void setupTitle() {
-    titleLabel = new JLabel();
-    titleLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 36));
-    titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    titleLabel.setText("Welcome to Lingu!");
+    title = new JLabel();
+    title.setFont(new java.awt.Font("Helvetica Neue", 0, 36));
+    title.setHorizontalAlignment(SwingConstants.CENTER);
+    title.setText("Welcome to Lingu!");
   }
 
   private void setupName() {
-    nameTextArea = new JTextArea();
-    nameTextArea.setColumns(40);
-    nameTextArea.setRows(1);
+    nameField = new JTextArea();
+    nameField.setColumns(30);
+    nameField.setRows(1);
 
     namePanel = new JPanel();
     namePanel.setBorder(BorderFactory.createTitledBorder("Your Name"));
     namePanel.setToolTipText("Please enter your name");
+    namePanel.add(nameField);
   }
 
   private void setupSelectTargetLanguage() {
@@ -68,9 +69,9 @@ public class Register extends JPanel {
   }
 
   private void setupRegisterButton() {
-    registerButton = new JButton();
-    registerButton.setText("Register");
-    registerButton.addActionListener(new ActionListener() {
+    register = new JButton();
+    register.setText("Register");
+    register.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
         // TODO: validate inputs and save new learner
         navigateTo.execute("menu");
@@ -88,35 +89,36 @@ public class Register extends JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(namePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE)
-                    .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE)
-                    .addComponent(registerButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE)
-                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(selectTargetLanguage, GroupLayout.PREFERRED_SIZE,
-                            GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namePanel,
+                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(title,
+                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(register,
+                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(selectTargetLanguage,
+                            GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectSourceLanguage, GroupLayout.DEFAULT_SIZE,
-                            GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(selectSourceLanguage,
+                            GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap()));
     layout.setVerticalGroup(
         layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                .addComponent(title,
+                    GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(namePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                    GroupLayout.PREFERRED_SIZE)
+                .addComponent(namePanel,
+                    GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(selectTargetLanguage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectSourceLanguage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selectTargetLanguage,
+                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectSourceLanguage,
+                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(registerButton)
+                .addComponent(register)
                 .addContainerGap()));
   }
 
