@@ -5,12 +5,13 @@ import backend.services.implementations.*;
 import backend.services.interfaces.*;
 
 public class Environment {
+
+  private Learner learner;
+
   private final Localizer localizer;
   private final Translator translator;
   private final WordGenerator wordGenerator;
   private final Persistor<Learner> learnerPersistor;
-
-  private Learner learner;
 
   public Environment() {
     this(
@@ -32,8 +33,7 @@ public class Environment {
     this.learnerPersistor = learnerPersistor;
 
     if (learner == null) {
-      setLearner(
-          learnerPersistor.load().orElse(new Learner().setLocale(localizer.getLanguage())));
+      setLearner(learnerPersistor.load().orElse(new Learner().setLocale(localizer.getLanguage())));
     }
   }
 

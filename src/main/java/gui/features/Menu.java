@@ -1,83 +1,83 @@
 package gui.features;
 
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.*;
 import gui.lib.Environment;
+import gui.lib.NavigateTo;
 
-/**
- *
- * @author leolem
- */
-public class Menu extends javax.swing.JFrame {
+public class Menu extends JPanel {
 
-  public Menu(Environment env) {
-    initComponents();
+  private final NavigateTo navigateTo;
+
+  private final JLabel titleLabel = new JLabel();
+  private final JButton learnButton = new JButton();
+  private final JButton settingsButton = new JButton();
+
+  public Menu(Environment env, NavigateTo navigateTo) {
+    this.navigateTo = navigateTo;
+
+    setupTitleLabel();
+    setupLearnButton();
+    setupSettingsButton();
+    setupLayout();
   }
 
-  private void initComponents() {
+  private void setupTitleLabel() {
+    titleLabel.setFont(new Font("Helvetica Neue", 0, 36));
+    titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    titleLabel.setText("Hello there!");
+  }
 
-    jLabel1 = new javax.swing.JLabel();
-    jButton1 = new javax.swing.JButton();
-    jButton2 = new javax.swing.JButton();
-
-    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-    jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-    jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel1.setText("Hello there!");
-
-    jButton1.setText("Settings");
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
+  private void setupLearnButton() {
+    learnButton.setText("Learn language");
+    learnButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {
+        navigateTo.execute("learn");
       }
     });
+  }
 
-    jButton2.setText("Learn language");
-    jButton2.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton2ActionPerformed(evt);
+  private void setupSettingsButton() {
+    settingsButton.setText("Settings");
+    settingsButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {
+        navigateTo.execute("settings");
       }
     });
+  }
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-    getContentPane().setLayout(layout);
+  private void setupLayout() {
+    GroupLayout layout = new GroupLayout(this);
+
+    setLayout(layout);
+
     layout.setHorizontalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE,
-                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108,
-                            javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(learnButton, GroupLayout.DEFAULT_SIZE,
+                            GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(settingsButton, GroupLayout.PREFERRED_SIZE, 108,
+                            GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap()));
+
     layout.setVerticalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                    .addComponent(learnButton, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                    .addComponent(settingsButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
                         Short.MAX_VALUE))
                 .addContainerGap()));
-
-    pack();
   }
-
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-
-  }
-
-  private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-    // TODO add your handling code here:
-  }
-
-  private javax.swing.JButton jButton1;
-  private javax.swing.JButton jButton2;
-  private javax.swing.JLabel jLabel1;
 
 }

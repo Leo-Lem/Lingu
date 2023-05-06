@@ -3,9 +3,12 @@ package gui;
 import gui.features.*;
 import gui.lib.Environment;
 
+import java.awt.CardLayout;
+import java.awt.Container;
+
 import javax.swing.*;
 
-public class Lingu {
+public class Lingu extends JFrame {
 
   public static void main(String[] args) {
     setTheme();
@@ -13,11 +16,8 @@ public class Lingu {
     lingu.run();
   }
 
+  private final CardLayout cards = new CardLayout();;
   private final Environment env;
-  private final JFrame register;
-  private final JFrame menu;
-  private final JFrame learn;
-  private final JFrame settings;
 
   public Lingu() {
     this(new Environment());
@@ -26,33 +26,37 @@ public class Lingu {
   public Lingu(Environment env) {
     this.env = env;
 
-    register = new Register(env);
-    menu = new Menu(env);
-    learn = new Learn(env);
-    settings = new Settings(env);
+    setTitle("Lingu");
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+    Container pane = getContentPane();
+
+    pane.setLayout(cards);
+    // pane.add("register", new Register(env));
+    pane.add("menu", new Menu(env, i -> navigateTo(i)));
+    // pane.add("learn", new Learn(env));
+    // pane.add("settings", new Settings(env));
   }
 
   public void run() {
-    register.setVisible(true);
+    setSize(500, 300);
+    setVisible(true);
   }
 
   private static void setTheme() {
     try {
-      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+      for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
         if ("Nimbus".equals(info.getName())) {
-          javax.swing.UIManager.setLookAndFeel(info.getClassName());
+          UIManager.setLookAndFeel(info.getClassName());
           break;
         }
-      }
-    } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(Learn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(Learn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(Learn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(Learn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (Exception ex) {
+      ex.printStackTrace();
     }
+  }
+
+  private void navigateTo(String identifier) {
+    cards.show(getContentPane(), identifier);
   }
 
 }
