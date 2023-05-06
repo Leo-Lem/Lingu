@@ -13,7 +13,7 @@ public class DerbyDBPersistor implements Persistor<Learner> {
   public DerbyDBPersistor() {
     try (Connection connection = DriverManager.getConnection(CONNECTION_URL)) {
       String CREATE_LEARNER_SQL = "CREATE TABLE learners ("
-          + "name VARCHAR(255) PRIMARY KEY NOT NULL,"
+          + "name VARCHAR(255) NOT NULL PRIMARY KEY,"
           + "locale CHAR(2) NOT NULL,"
           + "source CHAR(2) NOT NULL,"
           + "target CHAR(2) NOT NULL"
@@ -30,14 +30,22 @@ public class DerbyDBPersistor implements Persistor<Learner> {
           + "FOREIGN KEY (learner_name) references learners"
           + ")";
 
-      Statement statement = connection.createStatement();
-      statement.execute(CREATE_LEARNER_SQL);
-      statement.execute(CREATE_VOCAB_SQL);
-    } catch (SQLException e) {
-      if (e.getErrorCode() != 30000) {
-        e.printStackTrace();
-        throw new RuntimeException("Failed to connect to database.");
+      try {
+        connection.createStatement().execute(CREATE_LEARNER_SQL);
+      } catch (SQLException e) {
+        if (e.getErrorCode() != 30000)
+          throw e;
       }
+
+      try {
+        connection.createStatement().execute(CREATE_VOCAB_SQL);
+      } catch (SQLException e) {
+        if (e.getErrorCode() != 30000)
+          throw e;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw new RuntimeException("Failed to connect to database.");
     }
   }
 
@@ -65,22 +73,13 @@ public class DerbyDBPersistor implements Persistor<Learner> {
   }
 
   @Override
-  public void save(Learner object) {
+  public void save(Learner learner) {
     try (Connection connection = DriverManager.getConnection(CONNECTION_URL)) {
-      String upsertLearnerSQL = learnerExists(connection, object)
-          ? "UPDATE learners SET locale=?, source=?, target=? WHERE name=?"
-          : "INSERT INTO learners (name, locale, source, target) VALUES (?, ?, ?, ?)";
-      setLearnerParameters(connection.prepareStatement(upsertLearnerSQL), object)
-          .executeUpdate();
 
-      for (Vocab vocab : object.getVocabulary()) {
-        String upsertVocabSQL = vocabExists(connection, vocab, object.getName())
-            ? "UPDATE vocabs SET stage=?, nextUp=?"
-            : "INSERT INTO vocabs (word, source, target, stage, nextUp, learner_name) VALUES (?, ?, ?, ?, ?, ?)";
+      prepareLearnerStatement(connection, learner).executeUpdate();
 
-        setVocabParameters(connection.prepareStatement(upsertVocabSQL), vocab, object.getName())
-            .executeUpdate();
-      }
+      for (Vocab vocab : learner.getVocabulary())
+        prepareVocabStatement(connection, vocab, learner.getName()).executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -112,22 +111,63 @@ public class DerbyDBPersistor implements Persistor<Learner> {
     return vocabulary;
   }
 
-  private PreparedStatement setLearnerParameters(PreparedStatement statement, Learner learner) throws SQLException {
-    statement.setString(1, learner.getName());
-    statement.setString(2, learner.getLocale().getCode());
-    statement.setString(3, learner.getSource().getCode());
-    statement.setString(4, learner.getTarget().getCode());
+  private PreparedStatement prepareLearnerStatement(Connection connection, Learner learner) throws SQLException {
+    boolean learnerExists = learnerExists(connection, learner);
+
+    String upsertLearnerSQL = learnerExists
+        ? "UPDATE learners SET locale=?, source=?, target=? WHERE name=?"
+        : "INSERT INTO learners (name, locale, source, target) VALUES (?, ?, ?, ?)";
+
+    PreparedStatement statement = connection.prepareStatement(upsertLearnerSQL);
+
+    if (learnerExists) {
+      statement.setString(1, learner.getLocale().getCode());
+      statement.setString(2, learner.getSource().getCode());
+      statement.setString(3, learner.getTarget().getCode());
+      statement.setString(4, learner.getName());
+    } else {
+      if (learner.getName() != null)
+        statement.setString(1, learner.getName());
+      else
+        statement.setNull(1, Types.VARCHAR);
+
+      statement.setString(2, learner.getLocale().getCode());
+
+      if (learner.getSource() != null)
+        statement.setString(3, learner.getSource().getCode());
+      else
+        statement.setNull(3, Types.VARCHAR);
+
+      if (learner.getTarget() != null)
+        statement.setString(4, learner.getTarget().getCode());
+      else
+        statement.setNull(4, Types.VARCHAR);
+    }
+
     return statement;
   }
 
-  private PreparedStatement setVocabParameters(PreparedStatement statement, Vocab vocab, String name)
-      throws SQLException {
-    statement.setString(1, vocab.getWord());
-    statement.setString(2, vocab.getSource().getCode());
-    statement.setString(3, vocab.getTarget().getCode());
-    statement.setInt(4, vocab.getStage());
-    statement.setObject(5, Timestamp.valueOf(vocab.getNextUp()));
-    statement.setString(6, name);
+  private PreparedStatement prepareVocabStatement(Connection connection, Vocab vocab, String name) throws SQLException {
+    boolean vocabExists = vocabExists(connection, vocab, name);
+
+    String upsertVocabSQL = vocabExists
+        ? "UPDATE vocabs SET stage=?, nextUp=?"
+        : "INSERT INTO vocabs (word, source, target, stage, nextUp, learner_name) VALUES (?, ?, ?, ?, ?, ?)";
+
+    PreparedStatement statement = connection.prepareStatement(upsertVocabSQL);
+
+    if (vocabExists) {
+      statement.setInt(1, vocab.getStage());
+      statement.setObject(2, Timestamp.valueOf(vocab.getNextUp()));
+    } else {
+      statement.setString(1, vocab.getWord());
+      statement.setString(2, vocab.getSource().getCode());
+      statement.setString(3, vocab.getTarget().getCode());
+      statement.setString(6, name);
+      statement.setInt(4, vocab.getStage());
+      statement.setObject(5, Timestamp.valueOf(vocab.getNextUp()));
+    }
+
     return statement;
   }
 
