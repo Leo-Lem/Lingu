@@ -33,13 +33,18 @@ public class Lingu extends JFrame {
 
     Container pane = getContentPane();
     pane.setLayout(cards);
-    pane.add("register", new Register(env, i -> navigateTo(i)));
     pane.add("menu", new Menu(env, i -> navigateTo(i)));
     pane.add("learn", new Learn(env, i -> navigateTo(i)));
     pane.add("settings", new Settings(env, i -> navigateTo(i)));
+    pane.add("register", new Register(env, i -> navigateTo(i)));
   }
 
   public void run() {
+    if (env.getLearner().getName() == null
+        || env.getLearner().getTarget() == null
+        || env.getLearner().getSource() == null)
+      navigateTo("register");
+
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     setSize(screenSize.width * 2 / 3, screenSize.height * 2 / 3);
 
