@@ -34,7 +34,7 @@ public class Lingu extends JFrame {
     pane.setLayout(cards);
     // pane.add("register", new Register(env));
     pane.add("menu", new Menu(env, i -> navigateTo(i)));
-    // pane.add("learn", new Learn(env));
+    pane.add("learn", new Learn(env, i -> navigateTo(i)));
     // pane.add("settings", new Settings(env));
   }
 

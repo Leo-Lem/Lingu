@@ -1,7 +1,6 @@
 package gui.features;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import gui.lib.Environment;
