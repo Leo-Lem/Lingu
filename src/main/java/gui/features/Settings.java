@@ -40,7 +40,7 @@ public class Settings extends JPanel {
   }
 
   private void setupEnterName() {
-    enterName = new EnterName();
+    enterName = new EnterName(env.getLearner().getName());
   }
 
   private void setupTargetLanguage() {
@@ -76,7 +76,12 @@ public class Settings extends JPanel {
     save.setText("Save");
     save.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
-        // TODO: save learner
+        env.setLearner(env.getLearner()
+            .setName(enterName.getName())
+            .setSource(selectSourceLanguage.getSelected())
+            .setTarget(selectTargetLanguage.getSelected())
+            .setLocale(selectInterfaceLanguage.getSelected()));
+
         navigateTo.execute("menu");
       }
     });

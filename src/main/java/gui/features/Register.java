@@ -40,7 +40,7 @@ public class Register extends JPanel {
   }
 
   private void setupEnterName() {
-    enterName = new EnterName();
+    enterName = new EnterName("");
   }
 
   private void setupSelectTargetLanguage() {

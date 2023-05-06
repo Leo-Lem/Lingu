@@ -5,11 +5,12 @@ import java.awt.event.*;
 
 public class EnterName extends JPanel {
 
-  private String name = "";
+  private String name;
 
   private JTextArea field;
 
-  public EnterName() {
+  public EnterName(String name) {
+    this.name = name;
     setupField();
     setup();
   }
@@ -20,6 +21,7 @@ public class EnterName extends JPanel {
 
   private void setupField() {
     field = new JTextArea();
+    field.setText(name);
     field.setColumns(30);
     field.setRows(1);
     field.addKeyListener(new KeyAdapter() {
