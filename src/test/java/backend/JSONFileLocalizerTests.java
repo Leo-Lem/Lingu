@@ -10,7 +10,7 @@ import backend.services.interfaces.Localizer;
 
 public class JSONFileLocalizerTests {
 
-  private Localizer localizer = new JSONFileLocalizer(Language.ENGLISH);
+  private Localizer localizer = new JSONFileLocalizer(Language.ENGLISH, "localizations");
 
   @Test
   public void whenLocalizingSubtitle_thenReturnSomeLocalization() {

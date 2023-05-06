@@ -1,138 +1,133 @@
 package gui.features;
 
 import javax.swing.*;
-import java.awt.event.*;
-import java.util.*;
-
 import backend.model.Language;
-import gui.lib.*;
+import backend.services.interfaces.Localizer;
+import gui.comps.*;
 
 public class Settings extends JPanel {
 
-  private final Environment env;
-  private final NavigateTo navigateTo;
+  private TitleLabel titleLabel = new TitleLabel("");
+  private TextField nameField;
+  private LanguagePicker targetPicker;
+  private LanguagePicker sourcePicker;
+  private LanguagePicker localePicker;
+  private ActionButton saveButton;
 
-  private JLabel title;
-  private JPanel enterName;
-  private SelectLanguage selectTargetLanguage;
-  private SelectLanguage selectSourceLanguage;
-  private SelectLanguage selectInterfaceLanguage;
-  private JButton save;
-
-  public Settings(Environment env, NavigateTo navigateTo) {
-    this.env = env;
-    this.navigateTo = navigateTo;
-
-    setupTitle();
-    setupEnterName();
-    setupTargetLanguage();
-    setupSourceLanguage();
-    setupInterfaceLanguage();
-    setupSave();
-    setupLayout();
+  public Settings(
+      Localizer localizer, Language[] targets, Language[] sources, Language[] locales,
+      ActionButton.Action save) {
+    nameField = new TextField("", "");
+    targetPicker = new LanguagePicker("", targets, Language.SPANISH);
+    sourcePicker = new LanguagePicker("", sources, Language.ENGLISH);
+    localePicker = new LanguagePicker("", locales, Language.ENGLISH);
+    saveButton = new ActionButton("", save);
+    update(localizer, "", Language.BASE, Language.BASE, Language.BASE);
+    layOut();
   }
 
-  private void setupTitle() {
-    title = new JLabel();
-    title.setFont(new java.awt.Font("Helvetica Neue", 0, 36));
-    title.setHorizontalAlignment(SwingConstants.CENTER);
-    title.setText("Adjust your settings");
+  public String readName() {
+    return nameField.getInput();
   }
 
-  private void setupEnterName() {
-    enterName = new EnterName(env.getLearner().getName());
+  public Language readTarget() {
+    return targetPicker.getSelected();
   }
 
-  private void setupTargetLanguage() {
-    java.util.List<Language> languages = new ArrayList<>(Arrays.asList(env.getTranslator().getSupportedLanguages()));
-    languages.remove(Language.BASE);
-
-    selectTargetLanguage = new SelectLanguage(languages.toArray(new Language[0]), env.getLearner().getTarget());
-    selectTargetLanguage.setBorder(BorderFactory.createTitledBorder("Language to learn"));
-    selectTargetLanguage.setToolTipText("Select the language you want to learn");
+  public Language readSource() {
+    return sourcePicker.getSelected();
   }
 
-  private void setupSourceLanguage() {
-    java.util.List<Language> languages = new ArrayList<>(Arrays.asList(env.getTranslator().getSupportedLanguages()));
-    languages.remove(Language.BASE);
-    languages.remove(selectTargetLanguage.getSelected());
-
-    selectSourceLanguage = new SelectLanguage(languages.toArray(new Language[0]), Language.ENGLISH);
-    selectSourceLanguage.setBorder(BorderFactory.createTitledBorder("Translation language"));
-    selectSourceLanguage.setToolTipText("Select the language you want to translate from");
+  public Language readLocale() {
+    return localePicker.getSelected();
   }
 
-  private void setupInterfaceLanguage() {
-    java.util.List<Language> languages = new ArrayList<>(Arrays.asList(env.getLocalizer().getSupportedLanguages()));
-    languages.remove(Language.BASE);
-
-    selectInterfaceLanguage = new SelectLanguage(languages.toArray(new Language[0]), Language.ENGLISH);
-    selectInterfaceLanguage.setBorder(BorderFactory.createTitledBorder("Interface language"));
-    selectInterfaceLanguage.setToolTipText("Select the interface language");
+  public void update(Localizer localizer, String name, Language target, Language source, Language locale) {
+    titleLabel.setTitle(localizer.localize("SETTINGS_TITLE"));
+    nameField.setLabel(localizer.localize("CHOOSE_NEW_NAME"));
+    nameField.setInput(name);
+    targetPicker.setLabel(localizer.localize("PICK_TARGET_LANGUAGE"));
+    targetPicker.setSelected(target);
+    sourcePicker.setLabel(localizer.localize("PICK_SOURCE_LANGUAGE"));
+    sourcePicker.setSelected(source);
+    localePicker.setLabel(localizer.localize("PICK_INTERFACE_LANGUAGE"));
+    localePicker.setSelected(locale);
+    saveButton.setLabel(localizer.localize("SAVE_ACTION"));
   }
 
-  private void setupSave() {
-    save = new JButton();
-    save.setText("Save");
-    save.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evt) {
-        env.setLearner(env.getLearner()
-            .setName(enterName.getName())
-            .setSource(selectSourceLanguage.getSelected())
-            .setTarget(selectTargetLanguage.getSelected())
-            .setLocale(selectInterfaceLanguage.getSelected()));
-
-        navigateTo.execute("menu");
-      }
-    });
-  }
-
-  private void setupLayout() {
+  private void layOut() {
     GroupLayout layout = new GroupLayout(this);
-
-    setLayout(layout);
 
     layout.setHorizontalGroup(
         layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(enterName,
-                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(title,
-                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(save,
-                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(selectTargetLanguage,
-                            GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectSourceLanguage,
-                            GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectInterfaceLanguage,
-                            GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)))
+                .addGroup(layout.createParallelGroup(
+                    GroupLayout.Alignment.LEADING)
+                    .addComponent(nameField,
+                        GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE)
+                    .addComponent(titleLabel,
+                        GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE)
+                    .addComponent(saveButton,
+                        GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.TRAILING,
+                        layout.createSequentialGroup()
+                            .addComponent(targetPicker,
+                                GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.DEFAULT_SIZE)
+                            .addPreferredGap(
+                                LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(sourcePicker,
+                                GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.DEFAULT_SIZE)
+                            .addPreferredGap(
+                                LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(localePicker,
+                                GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.DEFAULT_SIZE)))
                 .addContainerGap()));
 
     layout.setVerticalGroup(
         layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(title, GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(enterName,
-                    GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, GroupLayout.DEFAULT_SIZE, 84,
+                    Short.MAX_VALUE)
+                .addPreferredGap(
+                    LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nameField,
+                    GroupLayout.PREFERRED_SIZE,
+                    GroupLayout.DEFAULT_SIZE,
+                    GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(selectTargetLanguage,
-                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectSourceLanguage,
-                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectInterfaceLanguage,
-                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(
+                    GroupLayout.Alignment.TRAILING)
+                    .addComponent(targetPicker,
+                        GroupLayout.PREFERRED_SIZE,
+                        GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sourcePicker,
+                        GroupLayout.PREFERRED_SIZE,
+                        GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.PREFERRED_SIZE)
+                    .addComponent(localePicker,
+                        GroupLayout.PREFERRED_SIZE,
+                        GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(save)
+                .addComponent(saveButton)
                 .addContainerGap()));
+
+    setLayout(layout);
   }
 
 }

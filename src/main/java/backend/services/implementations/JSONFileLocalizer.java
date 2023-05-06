@@ -34,12 +34,12 @@ public class JSONFileLocalizer implements Localizer {
   private Language language;
   private final Localizations localizations;
 
-  public JSONFileLocalizer() {
-    this(Language.defaultLanguage());
+  public JSONFileLocalizer(String filename) {
+    this(Language.defaultLanguage(), filename);
   }
 
-  public JSONFileLocalizer(Language language) {
-    this(language, new JSONFilePersistor<>(Localizations.class, "src/main/resources/localizations.json"));
+  public JSONFileLocalizer(Language language, String filename) {
+    this(language, new JSONFilePersistor<>(Localizations.class, "src/main/resources/" + filename + ".json"));
   }
 
   public JSONFileLocalizer(Language language, Persistor<Localizations> persistor)

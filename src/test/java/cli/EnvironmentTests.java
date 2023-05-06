@@ -14,7 +14,7 @@ public class EnvironmentTests {
 
   @Test
   public void whenGettingLocalizedMessage_thenReturnsMessage() {
-    Localizer localizer = new JSONFileLocalizer(Language.ENGLISH);
+    Localizer localizer = new JSONFileLocalizer(Language.ENGLISH, "localizations");
     Environment env = new Environment(null, localizer, null, null, new InMemoryPersistor<>(), null, null);
 
     Message message = env.getLocalizedMessage();
@@ -23,7 +23,7 @@ public class EnvironmentTests {
 
   @Test
   public void whenSettingLearner_thenUpdatesLocalizerLocale() {
-    Localizer localizer = new JSONFileLocalizer(Language.ENGLISH);
+    Localizer localizer = new JSONFileLocalizer(Language.ENGLISH, "localizations");
     Environment env = new Environment(null, localizer, null, null, new InMemoryPersistor<>(), null, null);
 
     env.setLearner(new Learner().setName("Leo").setLocale(Language.GERMAN));
@@ -33,7 +33,7 @@ public class EnvironmentTests {
   @Test
   public void whenSettingLearner_thenSaveslearner() {
     Persistor<Learner> persistor = new InMemoryPersistor<>();
-    Environment env = new Environment(null, new JSONFileLocalizer(), null, null, persistor, null, null);
+    Environment env = new Environment(null, new JSONFileLocalizer("localizations"), null, null, persistor, null, null);
 
     Learner learner = new Learner().setName("Leo").setLocale(Language.GERMAN);
     env.setLearner(learner);

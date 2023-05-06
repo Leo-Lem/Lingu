@@ -1,0 +1,92 @@
+{
+  "WELCOME_MESSAGE": {
+    "EN": "Welcome to Lingu!",
+    "DE": "Willkommen bei Lingu!",
+    "ES": "¡Bienvenido a Lingu!"
+  },
+  "YOUR_NAME": {
+    "EN": "Your name",
+    "DE": "Dein Name",
+    "ES": "Tu nombre"
+  },
+  "REGISTER": {
+    "EN": "Register",
+    "DE": "Registrieren",
+    "ES": "Registrarse"
+  },
+  "PICK_TARGET_LANGUAGE": {
+    "EN": "Language to learn",
+    "DE": "Sprache zum Lernen",
+    "ES": "Idioma para aprender"
+  },
+  "PICK_SOURCE_LANGUAGE": {
+    "EN": "Translation language",
+    "DE": "Übersetzungssprache",
+    "ES": "Idioma de traducción"
+  },
+  "PICK_INTERFACE_LANGUAGE": {
+    "EN": "Interface language",
+    "DE": "Sprache der Benutzeroberfläche",
+    "ES": "Idioma de la interfaz"
+  },
+  "HELLO_MESSAGE %s": {
+    "EN": "Hello, %s!",
+    "DE": "Hallo, %s!",
+    "ES": "¡Hola, %s!"
+  },
+  "LEARN %s": {
+    "EN": "Learn %s",
+    "DE": "%s lernen",
+    "ES": "Aprender %s"
+  },
+  "SETTINGS_TITLE": {
+    "EN": "Settings",
+    "DE": "Einstellungen",
+    "ES": "Ajustes"
+  },
+  "CHOOSE_NEW_NAME": {
+    "EN": "Your new name",
+    "DE": "Dein neuer Name",
+    "ES": "Tu nuevo nombre"
+  },
+  "SAVE_ACTION": {
+    "EN": "Save",
+    "DE": "Speichern",
+    "ES": "Guardar"
+  },
+  "ENGLISH": {
+    "EN": "English",
+    "DE": "Englisch",
+    "ES": "Inglés"
+  },
+  "GERMAN": {
+    "EN": "German",
+    "DE": "Deutsch",
+    "ES": "Alemán"
+  },
+  "SPANISH": {
+    "EN": "Spanish",
+    "DE": "Spanisch",
+    "ES": "Español"
+  },
+  "FRENCH": {
+    "EN": "French",
+    "DE": "Französisch",
+    "ES": "Francés"
+  },
+  "": {
+    "EN": "",
+    "DE": "",
+    "ES": ""
+  },
+  "": {
+    "EN": "",
+    "DE": "",
+    "ES": ""
+  },
+  "": {
+    "EN": "",
+    "DE": "",
+    "ES": ""
+  }
+}

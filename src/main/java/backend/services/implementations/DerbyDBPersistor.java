@@ -6,6 +6,8 @@ import java.util.Optional;
 import backend.model.*;
 import backend.services.interfaces.Persistor;
 
+// TODO: integrate with hibernate, this is just a mess
+
 public class DerbyDBPersistor implements Persistor<Learner> {
 
   private static final String CONNECTION_URL = "jdbc:derby:target/database;create=true";
@@ -13,6 +15,7 @@ public class DerbyDBPersistor implements Persistor<Learner> {
   public DerbyDBPersistor() {
     try (Connection connection = DriverManager.getConnection(CONNECTION_URL)) {
       String CREATE_LEARNER_SQL = "CREATE TABLE learners ("
+          + "id INT GENERATED ALWAYS AS IDENTITY,"
           + "name VARCHAR(255) NOT NULL PRIMARY KEY,"
           + "locale CHAR(2) NOT NULL,"
           + "source CHAR(2) NOT NULL,"
@@ -33,14 +36,18 @@ public class DerbyDBPersistor implements Persistor<Learner> {
       try {
         connection.createStatement().execute(CREATE_LEARNER_SQL);
       } catch (SQLException e) {
-        if (e.getErrorCode() != 30000)
+        if (e.getSQLState().equals("X0Y32"))
+          return;
+        else
           throw e;
       }
 
       try {
         connection.createStatement().execute(CREATE_VOCAB_SQL);
       } catch (SQLException e) {
-        if (e.getErrorCode() != 30000)
+        if (e.getSQLState().equals("42X05"))
+          return;
+        else
           throw e;
       }
     } catch (SQLException e) {
@@ -75,7 +82,6 @@ public class DerbyDBPersistor implements Persistor<Learner> {
   @Override
   public void save(Learner learner) {
     try (Connection connection = DriverManager.getConnection(CONNECTION_URL)) {
-
       prepareLearnerStatement(connection, learner).executeUpdate();
 
       for (Vocab vocab : learner.getVocabulary())
@@ -172,7 +178,7 @@ public class DerbyDBPersistor implements Persistor<Learner> {
   }
 
   private boolean learnerExists(Connection connection, Learner learner) throws SQLException {
-    String query = "SELECT 1 FROM learners WHERE name=?";
+    String query = "SELECT 1 FROM learners";
     PreparedStatement statement = connection.prepareStatement(query);
     statement.setString(1, learner.getName());
     return statement.executeQuery().next();

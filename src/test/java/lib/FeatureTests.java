@@ -24,7 +24,7 @@ public abstract class FeatureTests extends InputOutputTests {
           .setLocale(Language.BASE)
           .setSource(Language.ENGLISH)
           .setTarget(Language.SPANISH);
-      Localizer localizer = new JSONFileLocalizer(Language.BASE);
+      Localizer localizer = new JSONFileLocalizer(Language.BASE, "localizations");
       Translator translator = new JSONFileTranslator();
       WordGenerator wordGenerator = new JSONFileWordGenerator();
       Persistor<Learner> persistor = new InMemoryPersistor<>();

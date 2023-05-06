@@ -55,7 +55,7 @@ public class PrompterTests extends InputOutputTests {
 
   private Prompter getPrompter(OutputStream out, InputStream in) {
     Printer printer = new Printer(new PrintStream(out));
-    return new Prompter(in, printer, new JSONFileLocalizer(Language.BASE));
+    return new Prompter(in, printer, new JSONFileLocalizer(Language.BASE, "localizations"));
   }
 
 }

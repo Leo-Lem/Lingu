@@ -1,74 +1,48 @@
 package gui.features;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import gui.lib.Environment;
-import gui.lib.NavigateTo;
+
+import backend.model.Language;
+import backend.services.interfaces.Localizer;
+
+import gui.comps.*;
 
 public class Menu extends JPanel {
 
-  private final Environment env;
-  private final NavigateTo navigateTo;
+  private TitleLabel titleLabel;
+  private ActionButton learnButton;
+  private ActionButton settingsButton;
 
-  private JLabel title;
-  private JButton learn;
-  private JButton settings;
-
-  public Menu(Environment env, NavigateTo navigateTo) {
-    this.env = env;
-    this.navigateTo = navigateTo;
-
-    setupTitleLabel();
-    setupLearnButton();
-    setupSettingsButton();
-    setupLayout();
+  public Menu(Localizer localizer, ActionButton.Action learn, ActionButton.Action toSettings) {
+    titleLabel = new TitleLabel("");
+    learnButton = new ActionButton("", learn);
+    settingsButton = new ActionButton("", toSettings);
+    update(localizer, "", Language.ENGLISH);
+    layOut();
   }
 
-  private void setupTitleLabel() {
-    title = new JLabel();
-    title.setFont(new Font("Helvetica Neue", 0, 36));
-    title.setHorizontalAlignment(SwingConstants.CENTER);
-    title.setText("Hello there, " + env.getLearner().getName() + "!");
+  public void update(Localizer localizer, String name, Language target) {
+    titleLabel.setTitle(localizer.localize("HELLO_MESSAGE", name));
+    learnButton.setLabel(localizer.localize("LEARN", localizer.localize(target)));
+    settingsButton.setLabel(localizer.localize("SETTINGS_TITLE"));
   }
 
-  private void setupLearnButton() {
-    learn = new JButton();
-    learn.setText("Learn language");
-    learn.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evt) {
-        navigateTo.execute("learn");
-      }
-    });
-  }
-
-  private void setupSettingsButton() {
-    settings = new JButton();
-    settings.setText("Settings");
-    settings.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evt) {
-        navigateTo.execute("settings");
-      }
-    });
-  }
-
-  private void setupLayout() {
+  private void layOut() {
     GroupLayout layout = new GroupLayout(this);
-
-    setLayout(layout);
 
     layout.setHorizontalGroup(
         layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(title,
+                    .addComponent(titleLabel,
                         GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(learn,
-                            GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(learnButton,
+                            GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                            Short.MAX_VALUE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(settings,
+                        .addComponent(settingsButton,
                             GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap()));
 
@@ -76,15 +50,17 @@ public class Menu extends JPanel {
         layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(title,
+                .addComponent(titleLabel,
                     GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addComponent(learn,
+                    .addComponent(learnButton,
                         GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                    .addComponent(settings,
+                    .addComponent(settingsButton,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap()));
+
+    setLayout(layout);
   }
 
 }

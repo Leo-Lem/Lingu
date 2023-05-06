@@ -15,7 +15,7 @@ public class Environment {
   private Learner learner;
 
   public Environment() {
-    this(new JSONFileLocalizer(), new Printer());
+    this(new JSONFileLocalizer("localizations"), new Printer());
   }
 
   private Environment(Localizer localizer, Printer printer) {
