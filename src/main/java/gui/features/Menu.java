@@ -1,12 +1,14 @@
 package gui.features;
 
+import gui.lib.Environment;
+
 /**
  *
  * @author leolem
  */
 public class Menu extends javax.swing.JFrame {
 
-  public Menu() {
+  public Menu(Environment env) {
     initComponents();
   }
 

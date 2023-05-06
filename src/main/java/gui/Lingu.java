@@ -1,13 +1,38 @@
 package gui;
 
 import gui.features.*;
+import gui.lib.Environment;
+
 import javax.swing.*;
 
 public class Lingu {
 
   public static void main(String[] args) {
     setTheme();
+    Lingu lingu = new Lingu();
+    lingu.run();
+  }
 
+  private final Environment env;
+  private final JFrame register;
+  private final JFrame menu;
+  private final JFrame learn;
+  private final JFrame settings;
+
+  public Lingu() {
+    this(new Environment());
+  }
+
+  public Lingu(Environment env) {
+    this.env = env;
+
+    register = new Register(env);
+    menu = new Menu(env);
+    learn = new Learn(env);
+    settings = new Settings(env);
+  }
+
+  public void run() {
     register.setVisible(true);
   }
 
@@ -29,10 +54,5 @@ public class Lingu {
       java.util.logging.Logger.getLogger(Learn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
   }
-
-  private static final JFrame register = new Register();
-  // private static final JFrame menu = new Menu();
-  // private static final JFrame learn = new Learn();
-  // private static final JFrame settings = new Settings();
 
 }

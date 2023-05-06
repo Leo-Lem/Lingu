@@ -1,12 +1,14 @@
 package gui.features;
 
+import gui.lib.Environment;
+
 /**
  *
  * @author leolem
  */
 public class Settings extends javax.swing.JFrame {
 
-  public Settings() {
+  public Settings(Environment env) {
     initComponents();
   }
 

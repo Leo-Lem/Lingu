@@ -1,12 +1,14 @@
 package gui.features;
 
+import gui.lib.Environment;
+
 /**
  *
  * @author leolem
  */
 public class Register extends javax.swing.JFrame {
 
-  public Register() {
+  public Register(Environment env) {
     initComponents();
   }
 
