@@ -8,13 +8,15 @@ import gui.lib.NavigateTo;
 
 public class Menu extends JPanel {
 
+  private final Environment env;
   private final NavigateTo navigateTo;
 
-  private final JLabel titleLabel = new JLabel();
-  private final JButton learnButton = new JButton();
-  private final JButton settingsButton = new JButton();
+  private JLabel titleLabel;
+  private JButton learnButton;
+  private JButton settingsButton;
 
   public Menu(Environment env, NavigateTo navigateTo) {
+    this.env = env;
     this.navigateTo = navigateTo;
 
     setupTitleLabel();
@@ -24,12 +26,14 @@ public class Menu extends JPanel {
   }
 
   private void setupTitleLabel() {
+    titleLabel = new JLabel();
     titleLabel.setFont(new Font("Helvetica Neue", 0, 36));
     titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
     titleLabel.setText("Hello there!");
   }
 
   private void setupLearnButton() {
+    learnButton = new JButton();
     learnButton.setText("Learn language");
     learnButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
@@ -39,6 +43,7 @@ public class Menu extends JPanel {
   }
 
   private void setupSettingsButton() {
+    settingsButton = new JButton();
     settingsButton.setText("Settings");
     settingsButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {

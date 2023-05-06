@@ -5,6 +5,8 @@ import gui.lib.Environment;
 
 import java.awt.CardLayout;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.*;
 
@@ -30,17 +32,22 @@ public class Lingu extends JFrame {
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     Container pane = getContentPane();
-
     pane.setLayout(cards);
-    // pane.add("register", new Register(env));
+    pane.add("register", new Register(env, i -> navigateTo(i)));
     pane.add("menu", new Menu(env, i -> navigateTo(i)));
     pane.add("learn", new Learn(env, i -> navigateTo(i)));
-    // pane.add("settings", new Settings(env));
+    // pane.add("settings", new Settings(env, i -> navigateTo(i)));
   }
 
   public void run() {
-    setSize(500, 300);
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    setSize(screenSize.width * 2 / 3, screenSize.height * 2 / 3);
+
     setVisible(true);
+  }
+
+  private void navigateTo(String identifier) {
+    cards.show(getContentPane(), identifier);
   }
 
   private static void setTheme() {
@@ -53,10 +60,6 @@ public class Lingu extends JFrame {
     } catch (Exception ex) {
       ex.printStackTrace();
     }
-  }
-
-  private void navigateTo(String identifier) {
-    cards.show(getContentPane(), identifier);
   }
 
 }

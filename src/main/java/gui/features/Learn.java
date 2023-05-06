@@ -7,16 +7,18 @@ import gui.lib.NavigateTo;
 
 public class Learn extends JPanel {
 
+  private final Environment env;
   private final NavigateTo navigateTo;
 
-  private JLabel titleLabel = new JLabel();
-  private JPanel answerPanel = new JPanel();
-  private JTextArea answerField = new JTextArea();
-  private JLabel resultLabel = new JLabel();
-  private JButton submitContinueButton = new JButton();
-  private JButton returnButton = new JButton();
+  private JLabel titleLabel;
+  private JPanel answerPanel;
+  private JTextArea answerField;
+  private JLabel resultLabel;
+  private JButton submitContinueButton;
+  private JButton returnButton;
 
   public Learn(Environment env, NavigateTo navigateTo) {
+    this.env = env;
     this.navigateTo = navigateTo;
 
     setupTitleLabel();
@@ -29,26 +31,32 @@ public class Learn extends JPanel {
   }
 
   private void setupTitleLabel() {
+    titleLabel = new JLabel();
     titleLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 36));
     titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
     titleLabel.setText("What's {word} in {language}?");
   }
 
-  private void setupResultLabel() {
-    resultLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-    resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    resultLabel.setText("Result");
-  }
-
   private void setupAnswer() {
+    answerField = new JTextArea();
     answerField.setColumns(30);
     answerField.setRows(1);
+
+    answerPanel = new JPanel();
     answerPanel.setBorder(BorderFactory.createTitledBorder("Your Answer"));
     answerPanel.setToolTipText("Please type your answer");
     answerPanel.add(answerField);
   }
 
+  private void setupResultLabel() {
+    resultLabel = new JLabel();
+    resultLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+    resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    resultLabel.setText("Result");
+  }
+
   private void setupSubmitContinueButton() {
+    submitContinueButton = new JButton();
     submitContinueButton.setText("Submit / Continue");
     submitContinueButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
@@ -58,6 +66,7 @@ public class Learn extends JPanel {
   }
 
   private void setupReturnButton() {
+    returnButton = new JButton();
     returnButton.setText("{Return}");
     returnButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
