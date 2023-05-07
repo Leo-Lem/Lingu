@@ -23,6 +23,11 @@ public class TextField extends JPanel {
     field.setText(input);
   }
 
+  @Override
+  public void setEnabled(boolean isEnabled) {
+    field.setEnabled(isEnabled);
+  }
+
   public void setLabel(String title) {
     setBorder(BorderFactory.createTitledBorder(title));
   }

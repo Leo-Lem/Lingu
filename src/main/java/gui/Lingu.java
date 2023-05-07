@@ -50,7 +50,7 @@ public class Lingu extends JFrame {
 
     learner = persistor.load().orElse(new Learner().setLocale(localizer.getLanguage()));
 
-    menu = new Menu(localizer, () -> navigateTo("learn"), () -> navigateTo("settings"));
+    menu = new Menu(localizer, () -> startLearning(), () -> navigateTo("settings"));
     settings = new Settings(localizer, getTargetLanguages(), getSourceLanguages(), getLocales(), () -> saveSettings());
     learn = new Learn(localizer, () -> submit(), () -> next(), () -> navigateTo("menu"));
     register = new Register(localizer, getTargetLanguages(), getSourceLanguages(), () -> register());
@@ -64,6 +64,27 @@ public class Lingu extends JFrame {
     pane.add("learn", learn);
     pane.add("settings", settings);
     pane.add("register", register);
+  }
+
+  private void startLearning() {
+    if (learner.getTarget() != null && learner.getSource() != null && learner.getVocabulary() != null) {
+      Vocabulary relevant = learner.getVocabulary().get(learner.getSource(), learner.getTarget());
+
+      if (relevant.count() < 2)
+        learner.getVocabulary().add(generateVocabulary(10).get());
+      relevant = learner.getVocabulary().get(learner.getSource(), learner.getTarget());
+
+      vocabIterator = relevant.iterator();
+
+      if (vocabIterator.hasNext())
+        currentVocab = Optional.of(vocabIterator.next());
+      else
+        currentVocab = Optional.empty();
+    }
+
+    update();
+
+    navigateTo("learn");
   }
 
   public void run() {
@@ -146,21 +167,6 @@ public class Lingu extends JFrame {
   }
 
   private void update() {
-    if (learner.getTarget() != null && learner.getSource() != null && learner.getVocabulary() != null) {
-      Vocabulary relevant = learner.getVocabulary().get(learner.getSource(), learner.getTarget());
-
-      if (relevant.count() < 2)
-        learner.getVocabulary().add(generateVocabulary(10).get());
-      relevant = learner.getVocabulary().get(learner.getSource(), learner.getTarget());
-
-      vocabIterator = relevant.iterator();
-
-      if (vocabIterator.hasNext())
-        currentVocab = Optional.of(vocabIterator.next());
-      else
-        currentVocab = Optional.empty();
-    }
-
     if (learner.getLocale() != null)
       localizer.setLanguage(learner.getLocale());
 

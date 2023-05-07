@@ -1,7 +1,6 @@
 package backend.services.implementations;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import backend.model.*;
 import backend.services.interfaces.*;
@@ -38,11 +37,12 @@ public class JSONFileWordGenerator implements WordGenerator {
     else if (count > words.length)
       throw new IllegalArgumentException("Count is greater than available words");
 
-    return Arrays.stream(words)
-        .distinct()
-        .limit(count)
-        .collect(Collectors.toList())
-        .toArray(new String[] {});
+    Random rand = new Random();
+    String[] subset = Arrays.copyOf(words, count);
+    for (int i = 0; i < count; i++) {
+      subset[i] = words[rand.nextInt(words.length)];
+    }
+    return subset;
   }
 
 }

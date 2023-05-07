@@ -43,6 +43,7 @@ public class Learn extends JPanel {
       Boolean isShowingResult) {
     questionLabel.setText(localizer.localize("QUESTION", word, localizer.localize(target)));
     answerField.setLabel(localizer.localize("YOUR_ANSWER"));
+    answerField.setEnabled(!isShowingResult);
     resultLabel.setText(localizedResult);
     resultLabel.setVisible(isShowingResult);
     submitContinueButton.setLabel(localizer.localize(isShowingResult ? "CONTINUE" : "SUBMIT"));
