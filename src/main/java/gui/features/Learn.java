@@ -8,27 +8,45 @@ import gui.comps.*;
 
 public class Learn extends JPanel {
 
+  private final ActionButton.Action submit;
+  private final ActionButton.Action next;
+
   private TitleLabel questionLabel = new TitleLabel("");
   private TextField answerField;
   private JLabel resultLabel;
   private ActionButton submitContinueButton;
   private ActionButton returnButton;
 
-  public Learn(Localizer localizer, ActionButton.Action submitContinue, ActionButton.Action backToMenu) {
+  public Learn(
+      Localizer localizer, ActionButton.Action submit, ActionButton.Action next, ActionButton.Action backToMenu) {
+    this.submit = submit;
+    this.next = next;
+
     answerField = new TextField("", "");
     resultLabel = new JLabel("");
     resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    submitContinueButton = new ActionButton("", submitContinue);
+    submitContinueButton = new ActionButton("", submit);
     returnButton = new ActionButton("", backToMenu);
-    update(localizer, "", Language.ENGLISH, "", true);
+    update(localizer, "", Language.ENGLISH, "", false);
     layOut();
   }
 
-  public void update(Localizer localizer, String word, Language target, String localizedResult, Boolean isSubmit) {
+  public String readAnswer() {
+    return answerField.getInput();
+  }
+
+  public void clearAnswer() {
+    answerField.setInput("");
+  }
+
+  public void update(Localizer localizer, String word, Language target, String localizedResult,
+      Boolean isShowingResult) {
     questionLabel.setText(localizer.localize("QUESTION", word, localizer.localize(target)));
     answerField.setLabel(localizer.localize("YOUR_ANSWER"));
     resultLabel.setText(localizedResult);
-    submitContinueButton.setLabel(localizer.localize(isSubmit ? "SUBMIT" : "CONTINUE"));
+    resultLabel.setVisible(isShowingResult);
+    submitContinueButton.setLabel(localizer.localize(isShowingResult ? "CONTINUE" : "SUBMIT"));
+    submitContinueButton.setAction(isShowingResult ? next : submit);
     returnButton.setLabel(localizer.localize("BACK_TO_MENU"));
   }
 

@@ -98,5 +98,15 @@
     "EN": "Return",
     "DE": "Menü",
     "ES": "Menú"
+  },
+  "ANSWER_IS_CORRECT %s": {
+    "EN": "You are correct! (practice this word again after %s)",
+    "DE": "Das ist richtig! (Übe dieses Wort nochmal nach %s)",
+    "ES": "¡Tienes razón! (practica esta palabra de nuevo después de %s)"
+  },
+  "ANSWER_IS_WRONG %s": {
+    "EN": "That's wrong… The answer is %s",
+    "DE": "Das stimmt leider nicht… Die Antwort wäre %s",
+    "ES": "Eso es incorrecto… La respuesta es %s"
   }
 }
