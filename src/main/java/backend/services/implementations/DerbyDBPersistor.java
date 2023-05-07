@@ -14,23 +14,23 @@ public class DerbyDBPersistor implements Persistor<Learner> {
   public DerbyDBPersistor() {
     try (Connection connection = driver.connect(CONNECTION_URL, null)) {
       String CREATE_LEARNER_SQL = "CREATE TABLE learners ("
-              + "id INT PRIMARY KEY NOT NULL,"
-              + "name VARCHAR(255),"
-              + "locale CHAR(2),"
-              + "source CHAR(2),"
-              + "target CHAR(2)"
-              + ")";
+          + "id INT PRIMARY KEY NOT NULL,"
+          + "name VARCHAR(255),"
+          + "locale CHAR(2),"
+          + "source CHAR(2),"
+          + "target CHAR(2)"
+          + ")";
 
       String CREATE_VOCAB_SQL = "CREATE TABLE vocabs ("
-              + "word VARCHAR(255),"
-              + "source CHAR(2),"
-              + "target CHAR(2),"
-              + "stage INT,"
-              + "nextUp TIMESTAMP,"
-              + "learner_id INT,"
-              + "PRIMARY KEY (word, source, target, learner_id),"
-              + "FOREIGN KEY (learner_id) references learners"
-              + ")";
+          + "word VARCHAR(255),"
+          + "source CHAR(2),"
+          + "target CHAR(2),"
+          + "stage INT,"
+          + "nextUp TIMESTAMP,"
+          + "learner_id INT,"
+          + "PRIMARY KEY (word, source, target, learner_id),"
+          + "FOREIGN KEY (learner_id) references learners"
+          + ")";
 
       try {
         connection.createStatement().execute(CREATE_LEARNER_SQL);
@@ -106,11 +106,11 @@ public class DerbyDBPersistor implements Persistor<Learner> {
 
     while (results.next()) {
       Vocab vocab = new Vocab(
-              results.getString("word"),
-              Language.valueOfCode(results.getString("source")),
-              Language.valueOfCode(results.getString("target")),
-              Integer.parseInt(results.getString("stage")),
-              results.getTimestamp("nextUp").toLocalDateTime());
+          results.getString("word"),
+          Language.valueOfCode(results.getString("source")),
+          Language.valueOfCode(results.getString("target")),
+          Integer.parseInt(results.getString("stage")),
+          results.getTimestamp("nextUp").toLocalDateTime());
 
       vocabulary.add(vocab);
     }
@@ -122,8 +122,8 @@ public class DerbyDBPersistor implements Persistor<Learner> {
     boolean learnerExists = learnerExists(connection, learner);
 
     String upsertLearnerSQL = learnerExists
-            ? "UPDATE learners SET name=?, locale=?, source=?, target=? WHERE id=1"
-            : "INSERT INTO learners (id, name, locale, source, target) VALUES (1, ?, ?, ?, ?)";
+        ? "UPDATE learners SET name=?, locale=?, source=?, target=? WHERE id=1"
+        : "INSERT INTO learners (id, name, locale, source, target) VALUES (1, ?, ?, ?, ?)";
 
     PreparedStatement statement = connection.prepareStatement(upsertLearnerSQL);
 
@@ -161,14 +161,17 @@ public class DerbyDBPersistor implements Persistor<Learner> {
     boolean vocabExists = vocabExists(connection, vocab);
 
     String upsertVocabSQL = vocabExists
-            ? "UPDATE vocabs SET stage=?, nextUp=?"
-            : "INSERT INTO vocabs (word, source, target, stage, nextUp, learner_id) VALUES (?, ?, ?, ?, ?, 1)";
+        ? "UPDATE vocabs SET stage=?, nextUp=? WHERE learner_id=1 AND word=? AND source=? AND target=?"
+        : "INSERT INTO vocabs (word, source, target, stage, nextUp, learner_id) VALUES (?, ?, ?, ?, ?, 1)";
 
     PreparedStatement statement = connection.prepareStatement(upsertVocabSQL);
 
     if (vocabExists) {
       statement.setInt(1, vocab.getStage());
       statement.setObject(2, Timestamp.valueOf(vocab.getNextUp()));
+      statement.setString(3, vocab.getWord());
+      statement.setString(4, vocab.getSource().getCode());
+      statement.setString(5, vocab.getTarget().getCode());
     } else {
       statement.setString(1, vocab.getWord());
       statement.setString(2, vocab.getSource().getCode());

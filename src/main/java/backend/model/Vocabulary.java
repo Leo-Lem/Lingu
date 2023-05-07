@@ -49,6 +49,17 @@ public class Vocabulary implements Iterable<Vocab> {
     for (Vocab vocab : vocabs)
       if (!this.vocabs.contains(vocab))
         this.vocabs.add(vocab);
+
+    return this;
+  }
+
+  public Vocabulary insert(Vocab... vocabs) {
+    for (Vocab vocab : vocabs)
+      if (this.vocabs.contains(vocab))
+        this.vocabs.set(this.vocabs.indexOf(vocab), vocab);
+      else
+        add(vocab);
+
     return this;
   }
 

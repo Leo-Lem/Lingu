@@ -149,7 +149,7 @@ public class Lingu extends JFrame {
     if (learner.getTarget() != null && learner.getSource() != null && learner.getVocabulary() != null) {
       Vocabulary relevant = learner.getVocabulary().get(learner.getSource(), learner.getTarget());
 
-      if (relevant.count() < 10)
+      if (relevant.count() < 2)
         learner.getVocabulary().add(generateVocabulary(10).get());
       relevant = learner.getVocabulary().get(learner.getSource(), learner.getTarget());
 
@@ -193,7 +193,7 @@ public class Lingu extends JFrame {
       localizedResult = localizer.localize("ANSWER_IS_WRONG", translation.get());
     }
 
-    learner.getVocabulary().add(vocab);
+    learner.getVocabulary().insert(vocab);
 
     return localizedResult;
   }
