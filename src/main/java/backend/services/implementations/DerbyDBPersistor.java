@@ -6,8 +6,6 @@ import java.util.Optional;
 import backend.model.*;
 import backend.services.interfaces.Persistor;
 
-// TODO: integrate with hibernate, this is just a mess
-
 public class DerbyDBPersistor implements Persistor<Learner> {
 
   private static final String CONNECTION_URL = "jdbc:derby:target/database;create=true";
@@ -15,22 +13,22 @@ public class DerbyDBPersistor implements Persistor<Learner> {
   public DerbyDBPersistor() {
     try (Connection connection = DriverManager.getConnection(CONNECTION_URL)) {
       String CREATE_LEARNER_SQL = "CREATE TABLE learners ("
-          + "id INT GENERATED ALWAYS AS IDENTITY,"
-          + "name VARCHAR(255) NOT NULL PRIMARY KEY,"
-          + "locale CHAR(2) NOT NULL,"
-          + "source CHAR(2) NOT NULL,"
-          + "target CHAR(2) NOT NULL"
+          + "id INT PRIMARY KEY NOT NULL,"
+          + "name VARCHAR(255),"
+          + "locale CHAR(2),"
+          + "source CHAR(2),"
+          + "target CHAR(2)"
           + ")";
 
       String CREATE_VOCAB_SQL = "CREATE TABLE vocabs ("
-          + "word VARCHAR(255) NOT NULL,"
-          + "source CHAR(2) NOT NULL,"
-          + "target CHAR(2) NOT NULL,"
-          + "stage INT NOT NULL,"
-          + "nextUp TIMESTAMP NOT NULL,"
-          + "learner_name VARCHAR(255) NOT NULL,"
-          + "PRIMARY KEY (word, source, target, learner_name),"
-          + "FOREIGN KEY (learner_name) references learners"
+          + "word VARCHAR(255),"
+          + "source CHAR(2),"
+          + "target CHAR(2),"
+          + "stage INT,"
+          + "nextUp TIMESTAMP,"
+          + "learner_id INT,"
+          + "PRIMARY KEY (word, source, target, learner_id),"
+          + "FOREIGN KEY (learner_id) references learners"
           + ")";
 
       try {
@@ -59,16 +57,15 @@ public class DerbyDBPersistor implements Persistor<Learner> {
   @Override
   public Optional<Learner> load() {
     try (Connection connection = DriverManager.getConnection(CONNECTION_URL)) {
-      String selectLearnerSQL = "SELECT name, locale, source, target FROM learners";
+      String selectLearnerSQL = "SELECT name, locale, source, target FROM learners WHERE id=1";
       ResultSet result = connection.createStatement().executeQuery(selectLearnerSQL);
 
       if (result.next()) {
-        Learner learner = createLearner(result);
+        Learner learner = deserializeLearner(result);
 
-        String selectVocabsSQL = "SELECT word, source, target, stage, nextUp FROM vocabs WHERE learner_name=?";
+        String selectVocabsSQL = "SELECT word, source, target, stage, nextUp FROM vocabs WHERE learner_id=1";
         PreparedStatement selectVocabsStatement = connection.prepareStatement(selectVocabsSQL);
-        selectVocabsStatement.setString(1, learner.getName());
-        learner.setVocabulary(createVocabulary(selectVocabsStatement.executeQuery()));
+        learner.setVocabulary(deserializeVocabulary(selectVocabsStatement.executeQuery()));
 
         return Optional.of(learner);
       }
@@ -82,16 +79,16 @@ public class DerbyDBPersistor implements Persistor<Learner> {
   @Override
   public void save(Learner learner) {
     try (Connection connection = DriverManager.getConnection(CONNECTION_URL)) {
-      prepareLearnerStatement(connection, learner).executeUpdate();
+      serializeLearner(connection, learner).executeUpdate();
 
       for (Vocab vocab : learner.getVocabulary())
-        prepareVocabStatement(connection, vocab, learner.getName()).executeUpdate();
+        serializeVocab(connection, vocab).executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
   }
 
-  private Learner createLearner(ResultSet result) throws SQLException {
+  private Learner deserializeLearner(ResultSet result) throws SQLException {
     Learner learner = new Learner();
     learner.setName(result.getString("name"));
     learner.setLocale(Language.valueOfCode(result.getString("locale")));
@@ -100,7 +97,7 @@ public class DerbyDBPersistor implements Persistor<Learner> {
     return learner;
   }
 
-  private Vocabulary createVocabulary(ResultSet results) throws SQLException {
+  private Vocabulary deserializeVocabulary(ResultSet results) throws SQLException {
     Vocabulary vocabulary = new Vocabulary();
 
     while (results.next()) {
@@ -117,20 +114,20 @@ public class DerbyDBPersistor implements Persistor<Learner> {
     return vocabulary;
   }
 
-  private PreparedStatement prepareLearnerStatement(Connection connection, Learner learner) throws SQLException {
+  private PreparedStatement serializeLearner(Connection connection, Learner learner) throws SQLException {
     boolean learnerExists = learnerExists(connection, learner);
 
     String upsertLearnerSQL = learnerExists
-        ? "UPDATE learners SET locale=?, source=?, target=? WHERE name=?"
-        : "INSERT INTO learners (name, locale, source, target) VALUES (?, ?, ?, ?)";
+        ? "UPDATE learners SET name=?, locale=?, source=?, target=? WHERE id=1"
+        : "INSERT INTO learners (id, name, locale, source, target) VALUES (1, ?, ?, ?, ?)";
 
     PreparedStatement statement = connection.prepareStatement(upsertLearnerSQL);
 
     if (learnerExists) {
-      statement.setString(1, learner.getLocale().getCode());
-      statement.setString(2, learner.getSource().getCode());
-      statement.setString(3, learner.getTarget().getCode());
-      statement.setString(4, learner.getName());
+      statement.setString(1, learner.getName());
+      statement.setString(2, learner.getLocale().getCode());
+      statement.setString(3, learner.getSource().getCode());
+      statement.setString(4, learner.getTarget().getCode());
     } else {
       if (learner.getName() != null)
         statement.setString(1, learner.getName());
@@ -153,12 +150,12 @@ public class DerbyDBPersistor implements Persistor<Learner> {
     return statement;
   }
 
-  private PreparedStatement prepareVocabStatement(Connection connection, Vocab vocab, String name) throws SQLException {
-    boolean vocabExists = vocabExists(connection, vocab, name);
+  private PreparedStatement serializeVocab(Connection connection, Vocab vocab) throws SQLException {
+    boolean vocabExists = vocabExists(connection, vocab);
 
     String upsertVocabSQL = vocabExists
         ? "UPDATE vocabs SET stage=?, nextUp=?"
-        : "INSERT INTO vocabs (word, source, target, stage, nextUp, learner_name) VALUES (?, ?, ?, ?, ?, ?)";
+        : "INSERT INTO vocabs (word, source, target, stage, nextUp, learner_id) VALUES (?, ?, ?, ?, ?, 1)";
 
     PreparedStatement statement = connection.prepareStatement(upsertVocabSQL);
 
@@ -169,7 +166,6 @@ public class DerbyDBPersistor implements Persistor<Learner> {
       statement.setString(1, vocab.getWord());
       statement.setString(2, vocab.getSource().getCode());
       statement.setString(3, vocab.getTarget().getCode());
-      statement.setString(6, name);
       statement.setInt(4, vocab.getStage());
       statement.setObject(5, Timestamp.valueOf(vocab.getNextUp()));
     }
@@ -178,19 +174,17 @@ public class DerbyDBPersistor implements Persistor<Learner> {
   }
 
   private boolean learnerExists(Connection connection, Learner learner) throws SQLException {
-    String query = "SELECT 1 FROM learners";
+    String query = "SELECT 1 FROM learners WHERE id=1";
     PreparedStatement statement = connection.prepareStatement(query);
-    statement.setString(1, learner.getName());
     return statement.executeQuery().next();
   }
 
-  private boolean vocabExists(Connection connection, Vocab vocab, String name) throws SQLException {
-    String query = "SELECT 1 FROM vocabs WHERE word=? AND source=? AND target=? AND learner_name=?";
+  private boolean vocabExists(Connection connection, Vocab vocab) throws SQLException {
+    String query = "SELECT 1 FROM vocabs WHERE word=? AND source=? AND target=? AND learner_id=1";
     PreparedStatement statement = connection.prepareStatement(query);
     statement.setString(1, vocab.getWord());
     statement.setString(2, vocab.getSource().getCode());
     statement.setString(3, vocab.getTarget().getCode());
-    statement.setString(4, name);
     return statement.executeQuery().next();
   }
 }

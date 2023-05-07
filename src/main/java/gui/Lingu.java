@@ -50,8 +50,6 @@ public class Lingu extends JFrame {
 
     learner = persistor.load().orElse(new Learner().setLocale(localizer.getLanguage()));
 
-    update();
-
     menu = new Menu(localizer, () -> navigateTo("learn"), () -> navigateTo("settings"));
     settings = new Settings(localizer, getTargetLanguages(), getSourceLanguages(), getLocales(), () -> saveSettings());
     learn = new Learn(localizer, () -> submit(), () -> next(), () -> navigateTo("menu"));
@@ -69,6 +67,8 @@ public class Lingu extends JFrame {
   }
 
   public void run() {
+    update();
+
     if (learner.getName() == null
         || learner.getTarget() == null
         || learner.getSource() == null)
@@ -134,16 +134,18 @@ public class Lingu extends JFrame {
   private void submit() {
     String localizedResult = getAnswerFeedback(learn.readAnswer(), currentVocab.get());
     learn.update(localizer, currentVocab.get().getWord(), learner.getTarget(), localizedResult, true);
-
-    // TODO: persist learner
+    persistor.save(learner);
   }
 
   private void next() {
+    if (!vocabIterator.hasNext()) {
+      navigateTo("menu");
+      return;
+    }
+
     currentVocab = Optional.of(vocabIterator.next());
     learn.clearAnswer();
     learn.update(localizer, currentVocab.get().getWord(), learner.getTarget(), "", false);
-
-    // TODO: persist learner
   }
 
   private void update() {
@@ -158,7 +160,8 @@ public class Lingu extends JFrame {
       learn.update(
           localizer, currentVocab.isPresent() ? currentVocab.get().getWord() : "", learner.getTarget(), "", false);
 
-    // TODO: persist learner
+    if (learner.getName() != null && learner.getTarget() != null && learner.getSource() != null)
+      persistor.save(learner);
   }
 
   private String getAnswerFeedback(String answer, Vocab vocab) {
@@ -203,8 +206,6 @@ public class Lingu extends JFrame {
   }
 
   private void navigateTo(String identifier) {
-    update();
-
     cards.show(getContentPane(), identifier);
   }
 
