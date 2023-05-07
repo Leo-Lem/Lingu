@@ -108,11 +108,8 @@ public class Lingu extends JFrame {
     learner
         .setName(register.readName())
         .setTarget(register.readTarget())
-        .setSource(register.readSource());
-
-    learner.setVocabulary(generateVocabulary(10));
-    vocabIterator = learner.getVocabulary().iterator();
-    currentVocab = Optional.of(vocabIterator.next());
+        .setSource(register.readSource())
+        .setVocabulary(generateVocabulary(10));
 
     update();
 
@@ -138,17 +135,32 @@ public class Lingu extends JFrame {
   }
 
   private void next() {
-    if (!vocabIterator.hasNext()) {
+    if (vocabIterator.hasNext()) {
+      currentVocab = Optional.of(vocabIterator.next());
+      learn.clearAnswer();
+      learn.update(localizer, currentVocab.get().getWord(), learner.getTarget(), "", false);
+    } else {
       navigateTo("menu");
-      return;
+      learner.getVocabulary().add(generateVocabulary(10).get());
     }
-
-    currentVocab = Optional.of(vocabIterator.next());
-    learn.clearAnswer();
-    learn.update(localizer, currentVocab.get().getWord(), learner.getTarget(), "", false);
   }
 
   private void update() {
+    if (learner.getTarget() != null && learner.getSource() != null && learner.getVocabulary() != null) {
+      Vocabulary relevant = learner.getVocabulary().get(learner.getSource(), learner.getTarget());
+
+      if (relevant.count() < 10)
+        learner.getVocabulary().add(generateVocabulary(10).get());
+      relevant = learner.getVocabulary().get(learner.getSource(), learner.getTarget());
+
+      vocabIterator = relevant.iterator();
+
+      if (vocabIterator.hasNext())
+        currentVocab = Optional.of(vocabIterator.next());
+      else
+        currentVocab = Optional.empty();
+    }
+
     if (learner.getLocale() != null)
       localizer.setLanguage(learner.getLocale());
 
